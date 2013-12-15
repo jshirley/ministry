@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :project do
-    name "MyString"
-    user nil
-    status nil
+    name "Test Project"
+    association :user, factory: :user
+    association :status, factory: :status
   end
 end
