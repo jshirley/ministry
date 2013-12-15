@@ -9,6 +9,9 @@ gem 'rails', '4.0.0'
 # Use pg as the database for Active Record
 gem 'pg'
 
+# ElasticSearch
+gem 'tire'
+
 # General requirements
 gem 'awesome_print'
 gem 'groupdate'

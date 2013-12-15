@@ -20,6 +20,15 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
+
+    # Put a list of every index that is created. We could use something
+    # that traverses all models to see if it responds to tire.
+    # See: http://stackoverflow.com/questions/9676089/how-to-test-elasticsearch-in-a-rails-application-rspec
+    # See: http://stackoverflow.com/questions/516579/is-there-a-way-to-get-a-collection-of-all-the-models-in-your-rails-app
+    %w().each do |index|
+      Tire.index(index).delete
+    end
+
     DatabaseCleaner.start
   end
 
