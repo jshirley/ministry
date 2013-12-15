@@ -33,18 +33,14 @@ gem 'simple_form'
 gem 'country_select'
 gem "combined_time_select", "~> 1.0.0"
 
-group :assets do
-  gem 'rails-assets-bootstrap'
+gem 'sass-rails'
+gem 'rails-assets-bootstrap'
 
-  # Use Less for stylesheets
-  gem 'less-rails'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
 
-  # Use Uglifier as compressor for JavaScript assets
-  gem 'uglifier', '>= 1.3.0'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', platforms: :ruby
-end
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
