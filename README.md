@@ -11,6 +11,10 @@ Things like:
 
 Wnat what happens after the project is underway or even completed? It's forgotten in most cases. Sometimes it's stored as an archived Epic or Sprint, perhaps even a wiki page. None of these are particularly meaningful and they are hard to pull out structured data from. Especially when you want to look at success and failures over time.
 
+A visual representation of what typically happens after a project is "done":
+
+![](http://i.imgur.com/eEvzZCb.gif)
+
 ## What is a project?
 
 A project is a discrete (and potentially discreet, so we should have a "Private" flag) piece of work. In Agile terms, it should be something like a User Story or as large as a sprint. Never bigger.
