@@ -12,3 +12,7 @@
  *= require_tree .
  *= require bootstrap
  */
+
+.primary {
+  margin-top: 60px;
+}
