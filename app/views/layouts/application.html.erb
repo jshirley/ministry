@@ -54,9 +54,11 @@
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-               
+
+          <% flash.each do |key, value| %>
+            <%= content_tag(:div, value, :class => "flash #{key}") %>
+          <% end %>
+
           <%= yield %>
         </div><!--/span-->
 
