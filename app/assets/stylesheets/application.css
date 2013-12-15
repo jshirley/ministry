@@ -16,3 +16,7 @@
 .primary {
   margin-top: 60px;
 }
+
+.project-list .project-thumb {
+  height: 15em;
+}
