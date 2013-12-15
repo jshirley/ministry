@@ -1,6 +1,14 @@
 div.jumbotron
   h1 Make Some Shit
   p Create a project, get some help, change the world.
+
+  - if user_signed_in?
+    p
+      | Hello #{current_user.name}
+    p = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-default'
+  - else
+    p = link_to 'Sign in', new_user_session_path
+
 div.row.project-list
   div.col-6.col-sm-6.col-lg-4.project-thumb
     h2 Smurfadon
