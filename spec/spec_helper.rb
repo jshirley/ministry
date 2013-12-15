@@ -14,20 +14,33 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
+def clean_es! klass=nil
+  if klass.nil?
+    Dir[Rails.root.join("app","models","*.rb")].each do |m_p|
+      begin
+        klass_n = File.basename(m_p).sub(/.rb$/, '').classify.constantize
+      rescue Exception => e
+      end
+      clean_es!(klass_n) unless klass.nil?
+    end
+  else
+    if klass.ancestors.include? Tire::Model::Search
+      klass.tire.index.delete
+      klass.tire.create_elasticsearch_index
+    end
+  end
+end
+
+
 RSpec.configure do |config|
-  config.before(:suite) do
+   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each) do
-
-    # Put a list of every index that is created. We could use something
-    # that traverses all models to see if it responds to tire.
-    # See: http://stackoverflow.com/questions/9676089/how-to-test-elasticsearch-in-a-rails-application-rspec
-    # See: http://stackoverflow.com/questions/516579/is-there-a-way-to-get-a-collection-of-all-the-models-in-your-rails-app
-    %w().each do |index|
-      Tire.index(index).delete
-    end
+    # Clean elasticsearch before all tests?
+    # Look in config/initializers/tire.rb to see that in dev and production we get prefixed index names.
+    clean_es!
 
     DatabaseCleaner.start
   end

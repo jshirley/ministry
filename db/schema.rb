@@ -11,10 +11,114 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131215204614) do
+ActiveRecord::Schema.define(version: 20131215214933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "field_values", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "field_id"
+    t.integer  "user_id"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "field_values", ["field_id"], name: "index_field_values_on_field_id", using: :btree
+  add_index "field_values", ["project_id"], name: "index_field_values_on_project_id", using: :btree
+  add_index "field_values", ["user_id"], name: "index_field_values_on_user_id", using: :btree
+
+  create_table "fields", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "placeholder"
+    t.string   "type"
+    t.boolean  "required"
+    t.integer  "row_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "memberships", force: true do |t|
+    t.integer  "project_id",                 null: false
+    t.integer  "user_id"
+    t.integer  "role_id",                    null: false
+    t.boolean  "accepted",   default: false, null: false
+    t.boolean  "approved",   default: false, null: false
+    t.boolean  "active",     default: true,  null: false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "memberships", ["project_id"], name: "index_memberships_on_project_id", using: :btree
+  add_index "memberships", ["role_id"], name: "index_memberships_on_role_id", using: :btree
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
+
+  create_table "milestones", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.date     "date"
+    t.boolean  "success"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "milestones", ["project_id"], name: "index_milestones_on_project_id", using: :btree
+  add_index "milestones", ["user_id"], name: "index_milestones_on_user_id", using: :btree
+
+  create_table "projects", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["status_id"], name: "index_projects_on_status_id", using: :btree
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
+  create_table "roles", force: true do |t|
+    t.integer  "project_id"
+    t.string   "name"
+    t.boolean  "admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["project_id"], name: "index_roles_on_project_id", using: :btree
+
+  create_table "series", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "series", ["user_id"], name: "index_series_on_user_id", using: :btree
+
+  create_table "series_projects", force: true do |t|
+    t.integer  "series_id"
+    t.integer  "project_id"
+    t.integer  "row_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "series_projects", ["project_id"], name: "index_series_projects_on_project_id", using: :btree
+  add_index "series_projects", ["series_id"], name: "index_series_projects_on_series_id", using: :btree
+
+  create_table "statuses", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "next_status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
