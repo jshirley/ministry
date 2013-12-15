@@ -27,4 +27,10 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  has_many :projects, inverse_of: :user
+  has_many :series, inverse_of: :user
+  has_many :memberships, inverse_of: :user
+  has_many :milestones, inverse_of: :user
+  has_many :contributing_projects, through: :memberships, source: :project
 end
