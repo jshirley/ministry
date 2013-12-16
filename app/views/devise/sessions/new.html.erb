@@ -6,8 +6,8 @@
     <%= f.input :password, :required => false %>
     <%= f.input :remember_me, wrapper: :inline_checkbox,  :as => :boolean if devise_mapping.rememberable? %>
 
-    <%= f.button :submit, "Sign in" %>
+    <%= f.button :submit, :class => "btn-primary", :label => "Sign in" %>
   <% end %>
-
-  <%= render "devise/shared/links" %>
 </div>
+
+<%= render "devise/shared/links" %>
