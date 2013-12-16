@@ -1,4 +1,29 @@
 class Project < ActiveRecord::Base
+  after_touch {
+    tire.update_index
+  }
+
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+  mapping do
+    indexes :name, type: 'string', boost: 10, analyzer: 'snowball'
+    indexes :roles do
+      indexes :name, analyzer: 'snowball'
+    end
+  end
+
+  # TODO: move to a proper serializer class
+  self.include_root_in_json = false
+  def to_indexed_json
+    Rails.logger.ap self
+    to_json( include: {
+      users: { only: [ :name  ] },
+      roles: { },
+      field_values: { },
+    })
+  end
+
   belongs_to :user, inverse_of: :projects
   belongs_to :status, inverse_of: :projects
 

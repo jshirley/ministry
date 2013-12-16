@@ -19,6 +19,13 @@ describe User do
   end
 
   context "search" do
-    pending "add search examples"
+    let!(:project) { FactoryGirl.create(:project) }
+
+    it "refreshes search" do
+      Project.tire.index.refresh
+
+      results = Project.search("name:#{project.name}")
+      expect(results.first.name).to eq(project.name)
+    end
   end
 end
