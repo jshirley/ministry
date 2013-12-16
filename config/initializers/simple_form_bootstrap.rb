@@ -1,6 +1,7 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
-  config.form_class = 'form-horizontal'
+  # This isn't the default.  It's breaking stuff. @gphat
+  # config.form_class = 'form-horizontal'
 
   config.wrappers :bootstrap, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
@@ -46,7 +47,7 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
     b.wrapper :tag => 'div', :class => 'controls' do |ba|
-      ba.use :label_input, :wrap_with => { :class => 'checkbox-inline' }
+      ba.use :label_input
       ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
       ba.use :hint,  :wrap_with => { :tag => 'p', :class => 'help-block' }
     end
