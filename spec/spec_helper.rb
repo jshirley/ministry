@@ -14,14 +14,15 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
-def clean_es! klass=nil
+def clean_es!(klass=nil)
   if klass.nil?
     Dir[Rails.root.join("app","models","*.rb")].each do |m_p|
       begin
         klass_n = File.basename(m_p).sub(/.rb$/, '').classify.constantize
       rescue Exception => e
+        puts "Could not classify #{m_p}: #{e}"
       end
-      clean_es!(klass_n) unless klass.nil?
+      clean_es!(klass_n) unless klass_n.nil?
     end
   else
     if klass.ancestors.include? Tire::Model::Search
@@ -42,7 +43,7 @@ RSpec.configure do |config|
   config.before(:each) do
     # Clean elasticsearch before all tests?
     # Look in config/initializers/tire.rb to see that in dev and production we get prefixed index names.
-    clean_es!
+    #clean_es!
 
     DatabaseCleaner.start
   end
