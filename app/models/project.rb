@@ -1,6 +1,11 @@
 class Project < ActiveRecord::Base
   acts_as_taggable
 
+  def self.matched_to_user(user)
+    u = user
+    Project.tire.search { filter :terms, tags: u.skill_list }
+  end
+
   after_touch {
     tire.update_index
   }
@@ -13,16 +18,22 @@ class Project < ActiveRecord::Base
     indexes :roles do
       indexes :name, analyzer: 'snowball'
     end
+  
+    indexes :tags, analyzer: 'keyword'
   end
 
   # TODO: move to a proper serializer class
   self.include_root_in_json = false
   def to_indexed_json
-    Rails.logger.ap self
+    # acts-as-taggable-on requires a reload for tags to be here
+    self.reload
+
+    #ap self
     to_json( include: {
       users: { only: [ :name  ] },
       roles: { },
       field_values: { },
+      tags: { }
     })
   end
 

@@ -14,21 +14,6 @@ describe User do
       }.to change {
         user.projects.count
       }.from(0).to(1)
-
-    end
-  end
-
-  context "search" do
-    let!(:project) { FactoryGirl.create(:project) }
-
-    it "refreshes search" do
-      Project.tire.index.refresh
-
-      results = Project.search("name:#{project.name}")
-      expect(results.first.name).to eq(project.name)
-
-      # Call this to delete all indexes. If you want this automatic, uncomment it in spec/spec_helper.rb L46
-      clean_es!
     end
   end
 end
