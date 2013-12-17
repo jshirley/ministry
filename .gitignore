@@ -17,3 +17,8 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore vim swap files
+.*.swp
+
+.DS_Store
