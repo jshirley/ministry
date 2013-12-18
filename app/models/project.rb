@@ -59,6 +59,21 @@ class Project < ActiveRecord::Base
 
   after_save :setup_default_fields
 
+  def unfilled_roles
+    role_to_quantity = {}
+    self.roles.each do |role|
+      role_to_quantity[role.id] = role.quantity
+    end
+
+    self.memberships.select("memberships.role_id, COUNT(*) as count").group("role_id").each do |record|
+      if record.count >= role_to_quantity[record.role_id]
+        role_to_quantity.delete(record.role_id)
+      end
+    end
+
+    self.roles.where("id IN (:ids)", ids: role_to_quantity.keys)
+  end 
+
   private
   def setup_default_fields
     Field.default_fields.each do |field|
