@@ -1,5 +1,5 @@
 class Role < ActiveRecord::Base
-  belongs_to :project, inverse_of: :roles
+  belongs_to :project, inverse_of: :roles, touch: true
 
   has_many :memberships, inverse_of: :role
   has_many :users, through: :memberships
