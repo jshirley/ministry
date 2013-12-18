@@ -23,19 +23,19 @@ class Project < ActiveRecord::Base
   end
 
   # TODO: move to a proper serializer class
-  self.include_root_in_json = false
-  def to_indexed_json
-    # acts-as-taggable-on requires a reload for tags to be here
-    self.reload
+  # self.include_root_in_json = false
+  # def to_indexed_json
+  #   # acts-as-taggable-on requires a reload for tags to be here
+  #   self.reload
 
-    #ap self
-    to_json( include: {
-      users: { only: [ :name  ] },
-      roles: { },
-      field_values: { },
-      tags: { }
-    })
-  end
+  #   #ap self
+  #   to_json( include: {
+  #     users: { only: [ :name  ] },
+  #     roles: { },
+  #     field_values: { },
+  #     tags: { }
+  #   })
+  # end
 
   belongs_to :user, inverse_of: :projects
   belongs_to :status, inverse_of: :projects
