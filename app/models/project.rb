@@ -19,23 +19,16 @@ class Project < ActiveRecord::Base
       indexes :name, analyzer: 'snowball'
     end
   
-    indexes :tags, analyzer: 'keyword'
+    # tags are atoms, so there's no reason
+    # to analyze them
+    indexes :tags, :index    => :not_analyzed
   end
 
-  # TODO: move to a proper serializer class
-  # self.include_root_in_json = false
-  # def to_indexed_json
+  def to_indexed_json
   #   # acts-as-taggable-on requires a reload for tags to be here
-  #   self.reload
-
-  #   #ap self
-  #   to_json( include: {
-  #     users: { only: [ :name  ] },
-  #     roles: { },
-  #     field_values: { },
-  #     tags: { }
-  #   })
-  # end
+    # self.reload
+    ProjectSerializer.new(self).to_json
+  end
 
   belongs_to :user, inverse_of: :projects
   belongs_to :status, inverse_of: :projects

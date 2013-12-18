@@ -1,6 +1,11 @@
 Ministry::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Uncomment me to get verbose, curl-friendly logging from Tire
+  # Tire.configure do
+  #   logger STDERR, :level => 'debug'
+  # end
+
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that
   # your test database is "scratch space" for the test suite and is wiped

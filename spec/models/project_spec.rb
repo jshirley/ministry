@@ -62,6 +62,8 @@ describe Project do
         expect {
           project.tag_list = %w(play scala java jquery)
           project.save!
+          # Take a name because indexed documents are not immediately available
+          sleep(1)
         }.to change {
           res = Project.matched_to_user(user)
           res.results.size

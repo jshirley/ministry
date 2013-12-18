@@ -1,7 +1,10 @@
 class ProjectSerializer < ActiveModel::Serializer
-  attributes :id, :name, :tags
+  self.root = false
+
+  attributes :id, :name, tags: :tags
+  has_many :users, :roles, :field_values
 
   def tags
-    [ "fuck", "you" ]
+    object.tag_list
   end
 end
