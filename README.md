@@ -1,4 +1,6 @@
-# Synopsis
+# The Ministry of Potential Projects
+
+## Synopsis
 
 It's hard to figure out what to work on and who to work on it with. Also, many people are cross-functional. Wouldn't it be nice to see a list of projects that need _your_ help? And then have those projects be described in terms that make you want to work on them?
 
@@ -57,7 +59,7 @@ A developer may not care about when the documentation should be ready, but the p
 
 Everything should be searchable. Thanks, Google. Our projects should be, too. Based on permissions, whether or not you have visibility into the organization or it's a public project will matter. The goal is to find people who can help or who you can help.
 
-# Tools & Resources
+## Tools & Resources
 
 Dominant language: Ruby
 
@@ -77,4 +79,57 @@ Search: ElasticSearch (using the (re?)[tire](https://github.com/karmi/retire) ge
 
 Email: ActiveMailer utilizing the [Zurb Ink Framework](http://zurb.com/ink/)
 
+
+# User Stories and Use Cases
+
+## Open Source
+
+To Be Written
+
+## Hackathons
+
+To Be Written
+
+## Project Founders
+
+Project Founders are people who are backing the project. The buck stops with them.
+
+Ideally, they have stakeholders and have thought about all that is necessary
+for the project to succeed. This includes the roles the project needs to have
+filled, what would go wrong and the real benefit.
+
+### Use Case: Vetting an Idea
+
+While Ministry itself does not have discussion threads (yet?), it is a good
+idea to discuss the various questions raised in any project. Ministry allows
+free-form values to be set, but defaults to a set of specific questions that
+should allow the important discussions to be had and answers defined.
+
+The next step is getting people to fill the necessary roles. The founder
+will define what roles are necessary for the project. Until all the roles
+are filled, the project cannot advance into "Scheduling".
+
+If a founder cannot find people to participate in the project, it's probably a
+bad idea and you should feel bad.
+
+### Use Case: When to work on what
+
+When all roles are filled on a project, Ministry should help with scheduling.
+
+This is a difficult problem to solve, but one that would be really powerful.
+
+Getting a list of projects that are filled and finding out when all
+participants are available would be great to see how sprints can be managed.
+
+## The Unutilized
+
+_People who are looking for things to do, finding interesting projects._
+
+To Be Written
+
+## Overseers
+
+_People monitoring staff utilization and the momentum of a company or even open source product_
+
+To Be Written
 
