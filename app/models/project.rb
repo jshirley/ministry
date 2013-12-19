@@ -71,7 +71,7 @@ class Project < ActiveRecord::Base
   def setup_default_fields
     Field.default_fields.each do |field|
       self.field_values.create!(
-        field: field,
+        field_id: field.id,
         value: nil,
         user: self.user
       )

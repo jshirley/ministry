@@ -4,9 +4,18 @@ describe Project do
   let!(:project) { FactoryGirl.create(:project) }
 
   context "fields" do
-
     it "creates default fields" do
       expect(project.field_values.size).to eq(Field.default_fields.size)
+      expect(project.field_values.first.field.name).to eq(Field.default_fields[0].name)
+    end
+
+    it "sets field values and serializes" do
+      user    = project.user
+      value   = project.field_values.includes(:field).first
+      
+      value.update_attributes(user: user, value: "Foo")
+
+      expect(ProjectSerializer.new(project).to_json).to include(%Q("name":"#{value.field.name}","value":"#{value.value}"))
     end
   end
 
