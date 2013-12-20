@@ -15,6 +15,9 @@ describe Project do
       
       value.update_attributes(user: user, value: "Foo")
 
+      # TODO: Why do we need to reload? touch: true is on FieldValue
+      project.reload
+
       expect(ProjectSerializer.new(project).to_json).to include(%Q("name":"#{value.field.name}","value":"#{value.value}"))
     end
   end

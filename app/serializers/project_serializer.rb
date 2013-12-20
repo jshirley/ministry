@@ -1,8 +1,10 @@
 class ProjectSerializer < ActiveModel::Serializer
   self.root = false
 
-  attributes :id, :name, :content, :tags
-  has_many :users, :roles
+  attributes :id, :name, :tags
+
+  has_many :roles
+  has_many :field_values, root: :content, key: "content"
 
   def tags
     object.tag_list
@@ -11,6 +13,8 @@ class ProjectSerializer < ActiveModel::Serializer
   def content
     fields = []
 
+    # TODO: I'm not sure how to do this, but we don't want to include
+    # all the user fields in ES I don't think.
     object.field_values.includes(:field, :user).where({}).each do |value|
       next if value.value.blank?
       fields << {
