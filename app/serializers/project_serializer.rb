@@ -1,10 +1,14 @@
 class ProjectSerializer < ActiveModel::Serializer
   self.root = false
 
-  attributes :id, :name, :tags
+  attributes :id, :name, :tags, :current_status
 
   has_many :roles
   has_many :field_values, root: :content, key: "content"
+
+  def current_status
+    object.status.name
+  end
 
   def tags
     object.tag_list

@@ -21,7 +21,8 @@ class Project < ActiveRecord::Base
   
     # tags are atoms, so there's no reason
     # to analyze them
-    indexes :tags, :index    => :not_analyzed
+    indexes :tags, :index => :not_analyzed
+    indexes :current_staus, :index => :not_analyzed
   end
 
   def to_indexed_json
