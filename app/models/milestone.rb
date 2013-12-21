@@ -6,4 +6,9 @@ class Milestone < ActiveRecord::Base
   validates :user, presence: true
 
   validates_date :date
+
+  default_scope { order("date ASC") }
+
+  scope :past,   -> { where("date <= now()") }
+  scope :future, -> { where("date > now()") }
 end
