@@ -112,6 +112,23 @@ are filled, the project cannot advance into "Scheduling".
 If a founder cannot find people to participate in the project, it's probably a
 bad idea and you should feel bad.
 
+### Use Case: Describing Popular Work
+
+Once some projects have been completed, Ministry can help to describe the types
+of Projects that the organization wants to be doing. One should be able to look
+at reports that describe past efforts.
+
+### Use Case: Describing Project Effort
+
+Since Ministry tracks the times that each step occurs an organization can begin
+to understand the time involved in projects.
+
+* Rate of idea proposal
+* Rate of sign up
+* Time from proposal to beginning work
+* Time for subsequent steps
+* Time for completion
+
 ### Use Case: When to work on what
 
 When all roles are filled on a project, Ministry should help with scheduling.
@@ -124,6 +141,11 @@ participants are available would be great to see how sprints can be managed.
 ## The Unutilized
 
 _People who are looking for things to do, finding interesting projects._
+Such as:
+
+* What projects need my skills?
+* What projects are hot right now?
+* What's new?
 
 To Be Written
 
