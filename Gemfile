@@ -40,6 +40,7 @@ gem 'country_select'
 gem "combined_time_select", "~> 1.0.0"
 
 gem 'sass-rails'
+# From https://rails-assets.org, bower-based components
 gem 'rails-assets-bootstrap'
 
 # Use Uglifier as compressor for JavaScript assets
