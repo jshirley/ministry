@@ -18,7 +18,7 @@ class Project < ActiveRecord::Base
     indexes :roles do
       indexes :name, analyzer: 'snowball'
     end
-  
+
     # tags are atoms, so there's no reason
     # to analyze them
     indexes :tags, :index => :not_analyzed
@@ -36,6 +36,7 @@ class Project < ActiveRecord::Base
 
   has_many :field_values, inverse_of: :project
   has_many :fields, through: :field_values
+  accepts_nested_attributes_for :field_values
 
   has_many :roles, inverse_of: :project
 
@@ -51,7 +52,7 @@ class Project < ActiveRecord::Base
 
   validates :name, presence: true
 
-  after_save :setup_default_fields
+  after_create :setup_default_fields
 
   def unfilled_roles
     role_to_quantity = {}
@@ -66,16 +67,20 @@ class Project < ActiveRecord::Base
     end
 
     self.roles.where("id IN (:ids)", ids: role_to_quantity.keys)
-  end 
+  end
 
   private
   def setup_default_fields
+    return if self.field_values.size > 0
+
     Field.default_fields.each do |field|
-      self.field_values.create!(
+      record = self.field_values.build(
         field_id: field.id,
         value: nil,
         user: self.user
       )
+      # Value will be null, so we will skip validation on default.
+      record.save!(validate: false)
     end
   end
 end

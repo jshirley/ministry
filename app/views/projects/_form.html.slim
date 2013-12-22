@@ -2,9 +2,9 @@
   = f.input :name
   = f.input :tag_list, hint: 'Tags, separated by commas. Use programming languages and other keywords'
 
-  - @project.field_values.includes(:field).each do |value|
-    = simple_fields_for value do |fv|
-      = fv.input :value, label: value.field.name, required: value.field.required
+  = f.simple_fields_for :field_values do |fv|
+    = fv.input :field_id, as: :hidden
+    = fv.input :value, label: fv.object.field.name, required: fv.object.field.required
 
   - unless @project.new_record?
     h3 Project Roles

@@ -21,6 +21,13 @@ class Field < ActiveRecord::Base
       input_type: "textarea"
     )
 
+    fields << Field.find_or_create_by!(
+      name: "How do you measure success?",
+      description: "What does success look like and how will it be measured?",
+      required: true,
+      input_type: "textarea"
+    )
+
     fields
   end
 end

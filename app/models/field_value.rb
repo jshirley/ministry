@@ -6,4 +6,10 @@ class FieldValue < ActiveRecord::Base
 
   validates :project, presence: true
   validates :field, presence: true
+
+  validates_presence_of :value, if: :is_field_required?
+
+  def is_field_required?
+    field.required
+  end
 end

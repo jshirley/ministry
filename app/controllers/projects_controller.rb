@@ -7,10 +7,16 @@ class ProjectsController < ApplicationController
 
   def new
     @project = current_user.projects.build
+
     if flash[:project]
       @project.assign_attributes(flash[:project])
       @project.valid?
       flash.delete(:project)
+    else
+      # Nothing in Flash, we have to populate these manually.
+      Field.default_fields.each do |field|
+        @project.field_values.build(field: field, user: current_user)
+      end
     end
   end
 
@@ -50,6 +56,8 @@ class ProjectsController < ApplicationController
 
   def update
     data = project_data
+    logger.ap data
+
     @project.assign_attributes(data)
     if @project.valid?
       @project.save!
@@ -73,7 +81,7 @@ class ProjectsController < ApplicationController
 
   private
   def project_data
-    params.require(:project).permit(:name, :tag_list)
+    params.require(:project).permit(:name, :tag_list, field_values_attributes: [ :id, :field_id, :value ])
   end
 
   def load!
