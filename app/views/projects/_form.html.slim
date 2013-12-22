@@ -1,6 +1,6 @@
 = simple_form_for @project do |f|
   = f.input :name
-  = f.input :tag_list, hint: 'Tags, separated by commas. Use programming languages and other keywords'
+  = f.input :tag_list, hint: 'Tags, separated by commas. Use programming languages and other keywords', input_html: { data: { role: "tagsinput" } }
 
   = f.simple_fields_for :field_values do |fv|
     = fv.input :field_id, as: :hidden
