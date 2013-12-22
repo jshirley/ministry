@@ -7,6 +7,13 @@ Ministry::Application.routes.draw do
 
   root 'welcome#index'
 
+  resources :users
+
+  resources :projects do
+    resources :milestones
+    resources :roles
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -21,6 +21,9 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
 
+# State machine
+gem 'aasm'
+
 # Model Dependenciies
 gem 'nilify_blanks'
 gem 'active_model_serializers'
@@ -66,7 +69,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano', group: :development
+gem 'capistrano', '< 3.0.0', group: :development
 
 # Development and test
 group :test, :development do

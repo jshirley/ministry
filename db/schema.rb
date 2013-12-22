@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(version: 20131219171443) do
     t.boolean  "accepted",   default: false, null: false
     t.boolean  "approved",   default: false, null: false
     t.boolean  "active",     default: true,  null: false
-    t.string   "email",                      null: false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                      null: false
   end
 
   add_index "memberships", ["project_id"], name: "index_memberships_on_project_id", using: :btree

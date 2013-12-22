@@ -1,0 +1,17 @@
+h1 = t('projects_title.html')
+
+- if @projects.size == 0
+  div.jumbotron
+    h1 You have no projects!
+
+    = simple_form_for @project do |f|
+      = f.input :name, label: 'Start a new project'
+      = f.submit t('save_button_html'), class: 'btn btn-primary btn-large'
+
+- else
+  table.table.table-striped
+    tbody
+      - @projects.each do |project|
+        tr
+          td = link_to project.name, project_path(project)
+          td &nbsp;

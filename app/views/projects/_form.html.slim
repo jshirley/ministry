@@ -1,0 +1,18 @@
+= simple_form_for @project do |f|
+  = f.input :name
+  = f.input :tag_list, hint: 'Tags, separated by commas. Use programming languages and other keywords'
+
+  - @project.field_values.includes(:field).each do |value|
+    = simple_fields_for value do |fv|
+      = fv.input :value, label: value.field.name, required: value.field.required
+
+  - unless @project.new_record?
+    h3 Project Roles
+
+    p TODO
+
+  div.form-actions.row
+    div.col-xs-4
+      = f.submit t('save_button_html'), class: 'btn btn-primary'
+    div.col-xs-4.offset-xs-4
+      = link_to t('cancel_button_html'), projects_path, class: 'btn btn-default'
