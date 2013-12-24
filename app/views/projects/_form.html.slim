@@ -6,13 +6,19 @@
     = fv.input :field_id, as: :hidden
     = fv.input :value, label: fv.object.field.name, required: fv.object.field.required
 
-  - unless @project.new_record?
-    h3 Project Roles
-
-    p TODO
-
   div.form-actions.row
     div.col-xs-4
       = f.submit t('save_button_html'), class: 'btn btn-primary'
     div.col-xs-4.offset-xs-4
       = link_to t('cancel_button_html'), projects_path, class: 'btn btn-default'
+
+- unless @project.new_record?
+  h3 Project Roles
+
+  div id="role-list"
+    - @roles.each_with_index do |role, index|
+      = render "roles/inline_view", role: role, labels: index == 0
+    hr
+
+    = render "roles/inline_form", role: @project.roles.build(quantity: 1), labels: @roles.size > 0
+

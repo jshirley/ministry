@@ -1,0 +1,8 @@
+div.row id="role-#{role.id}"
+  div.col-xs-6
+    h3 = role.name
+  div.col-xs-3
+    h3 
+      | #{role.filled_count} / #{role.quantity}
+  div.col-xs-3
+    = link_to t('edit_button_html'), project_role_path(@project, role), class: 'btn btn-default'

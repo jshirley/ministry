@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
       # Need to populate with default status
       data[:status_id] = Status.initial_status.id
     end
+
     @project = current_user.projects.build(data)
     if @project.valid?
       @project.save!
@@ -52,6 +53,8 @@ class ProjectsController < ApplicationController
       @project.valid?
       flash.delete(:project)
     end
+
+    @roles = @project.roles
   end
 
   def update

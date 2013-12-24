@@ -1,0 +1,10 @@
+= simple_form_for [ @project, role ], remote: true do |role_fields|
+  div.row
+    div.col-xs-6
+      = role_fields.input :name, input_html: { data: { role: "typeahead", source: names_project_roles_path(@project) } }, label: labels ? t('role_name_label') : false
+    div.col-xs-3
+      = role_fields.input :quantity, label: labels ? t('role_quantity_label') : false
+    div.col-xs-3
+      / TODO: Need a top margin on this button
+      = role_fields.submit t('add_role_button_html'), class: 'btn btn-default'
+

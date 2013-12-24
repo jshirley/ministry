@@ -36,4 +36,13 @@ en:
   updated_project_alert: "Unable to update the project, please check the errors below."
   project_tag_list_label: "Tags"
   project_tag_input_hint: "Use enter to separate tags."
-    
+
+  # Role Strings 
+  created_role_notice: "Your role has been added!"
+  created_role_alert: "Unable to add the role, please check the errors below."
+  updated_role_notice: "The role has been updated!"
+  updated_role_alert: "Unable to update the role, please check the errors below."
+  role_name_label: "Role"
+  role_quantity_label: "How many?"
+  add_role_button_html: "Add"
+   

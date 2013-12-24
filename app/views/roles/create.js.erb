@@ -1,0 +1,16 @@
+var node      = $("<%= escape_javascript(render ((@role.new_record? or not @role.valid?) ? 'roles/inline_form' : 'roles/inline_view'), role: @role, labels: @project.roles.count == 0) %>"),
+    container = $("#role-list");
+
+<% if @role.new_record? %>
+  container.find("input[data-role='typeahead']").typeahead("destroy");
+  container.find('form#new_role').replaceWith(node);
+  container.find("input[data-role='typeahead']").each(function() {
+    $(this).typeahead({
+      prefetch: $(this).data('source')
+    });
+  });
+  container.append(node);
+<% else %>
+  node.insertBefore(container.find('hr'))
+  container.find('form#new_role').reset();
+<% end %>

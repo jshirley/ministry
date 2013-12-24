@@ -15,10 +15,19 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-tagsinput
+//= require typeahead
 //= require_tree .
 
 $(document).on("ready page:change", function() {
-  $("[data-role='tagsinput']")
-    .tagsinput("destroy")
-    .tagsinput();
+  $("[data-role='tagsinput']").each(function() {
+    $(this).tagsinput("destroy");
+    $(this).tagsinput();
+  });
+
+  $("input[data-role='typeahead']").each(function() {
+    $(this).typeahead("destroy")
+      .typeahead({
+        prefetch: $(this).data('source')
+      });
+  });
 });
