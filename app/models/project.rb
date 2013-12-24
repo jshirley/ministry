@@ -10,6 +10,25 @@ class Project < ActiveRecord::Base
     Project.tire.search { filter :terms, tags: u.skill_list }
   end
 
+  def self.need_staff
+    Project.tire.search do
+      query do
+        boolean do
+          should { all }
+          should do
+            boosting negative_boost: 0.2 do
+              positive { term :current_status, "Staffing" }
+              negative { term :current_status, "Pending" }
+            end
+          end
+        end
+      end
+      filter :and,
+        { :terms => { :current_status => ["Staffing", "Pending" ] } },
+        { :range => { "roles.needed_count".to_sym => { :gt => 0 } } }
+    end
+  end
+
   after_touch {
     tire.update_index
   }
@@ -23,9 +42,10 @@ class Project < ActiveRecord::Base
       indexes :name, analyzer: 'snowball'
     end
 
-    # tags are atoms, so there's no reason
+    # tags and statuses are atoms, so there's no reason
     # to analyze them
-    indexes :tags, :index    => :not_analyzed
+    indexes :tags,           :index => :not_analyzed
+    indexes :current_status, :index => :not_analyzed
   end
 
   def to_indexed_json

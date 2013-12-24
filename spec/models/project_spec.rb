@@ -145,13 +145,12 @@ describe Project do
         expect {
           project.tag_list = %w(play scala java jquery)
           project.save!
-          # Take a name because indexed documents are not immediately available
+          # Take a nap because indexed documents are not immediately available
           sleep(1)
         }.to change {
           res = Project.matched_to_user(user)
           res.results.size
         }.from(0).to(1)
-
       end
     end
   end
