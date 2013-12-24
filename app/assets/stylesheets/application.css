@@ -21,3 +21,7 @@
 .project-list .project-thumb {
   height: 15em;
 }
+
+.bootstrap-tagsinput {
+  width: 100%;
+}

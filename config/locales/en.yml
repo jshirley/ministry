@@ -34,4 +34,6 @@ en:
   created_project_alert: "Unable to add your project, please check the errors below."
   updated_project_notice: "The project has been updated!"
   updated_project_alert: "Unable to update the project, please check the errors below."
+  project_tag_list_label: "Tags"
+  project_tag_input_hint: "Use enter to separate tags."
     

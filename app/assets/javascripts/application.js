@@ -16,3 +16,9 @@
 //= require bootstrap
 //= require bootstrap-tagsinput
 //= require_tree .
+
+$(document).on("ready page:change", function() {
+  $("[data-role='tagsinput']")
+    .tagsinput("destroy")
+    .tagsinput();
+});
