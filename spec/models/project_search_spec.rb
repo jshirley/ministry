@@ -8,6 +8,7 @@ describe Project do
 
      it "Needs staff" do
       clean_es!
+      sleep(1) # Sleep for index creation
 
       expect {
         project.save!

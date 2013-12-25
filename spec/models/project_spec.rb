@@ -140,6 +140,7 @@ describe Project do
 
       it "from ElasticSearch" do
         clean_es!
+        sleep(1) # Sleep for index creation
 
         u = user
         expect {
