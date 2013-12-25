@@ -1,33 +1,9 @@
 class Project < ActiveRecord::Base
-  include AASM
+  include AASM, ProjectSearch
 
   # Sets up :tag_list, :tags
   acts_as_taggable
 
-  # TODO: ElasticSearch stuff (this should be moved into a Concern)
-  def self.matched_to_user(user)
-    u = user
-    Project.tire.search { filter :terms, tags: u.skill_list }
-  end
-
-  def self.need_staff
-    Project.tire.search do
-      query do
-        boolean do
-          should { all }
-          should do
-            boosting negative_boost: 0.2 do
-              positive { term :current_status, "Staffing" }
-              negative { term :current_status, "Pending" }
-            end
-          end
-        end
-      end
-      filter :and,
-        { :terms => { :current_status => ["Staffing", "Pending" ] } },
-        { :range => { "roles.needed_count".to_sym => { :gt => 0 } } }
-    end
-  end
 
   after_touch {
     tire.update_index
