@@ -42,7 +42,6 @@ gem "combined_time_select", "~> 1.0.0"
 gem 'sass-rails'
 gem 'less-rails'
 # From https://rails-assets.org, bower-based components
-gem 'rails-assets-jquery', '~> 1.9'
 gem 'rails-assets-bootstrap'
 gem 'rails-assets-bootstrap-tagsinput'
 #gem 'rails-assets-typeahead.js' This is completely busted up, just copied it into vendor

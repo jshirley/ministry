@@ -15,10 +15,6 @@
 - unless @project.new_record?
   h3 Project Roles
 
-  div id="role-list"
-    - @roles.each_with_index do |role, index|
-      = render "roles/inline_view", role: role, labels: index == 0
-    hr
+  = render "roles/display"
 
-    = render "roles/inline_form", role: @project.roles.build(quantity: 1), labels: @roles.size > 0
 

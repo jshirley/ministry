@@ -42,7 +42,11 @@ en:
   created_role_alert: "Unable to add the role, please check the errors below."
   updated_role_notice: "The role has been updated!"
   updated_role_alert: "Unable to update the role, please check the errors below."
+  updated_role_alert: "Unable to update the role, please check the errors below."
+  removed_role_notice: "This role has been removed from the project."
   role_name_label: "Role"
   role_quantity_label: "How many?"
   add_role_button_html: "Add"
-   
+  view_role_button_html: "Details"
+  delete_role_confirmation: "Are you sure you wish to remove this role? This will also remove participants from the project!"
+  delete_role_button_html: "Delete" 

@@ -31,14 +31,12 @@ class RolesController < ApplicationController
       @role.save!
       respond_to do |format|
         format.html { redirect_to project_path(@project), notice: t('created_role_notice') }
-        format.js   { }
         format.json { render json: @role }
       end
     else
       flash[:role] = data
       respond_to do |format|
         format.html { redirect_to new_project_role_path(@project), alert: t('created_role_alert') }
-        format.js   { }
         format.json { render json: @role.errors }
       end
     end
@@ -77,7 +75,12 @@ class RolesController < ApplicationController
   end
 
   def destroy
+    @role.destroy
 
+    respond_to do |format|
+      format.html { redirect_to project_path(@project), notice: t('removed_role_notice') }
+      format.json { render json: @project }
+    end
   end
 
   private

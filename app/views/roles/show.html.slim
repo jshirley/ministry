@@ -1,0 +1,3 @@
+h1 = @role.name
+
+= link_to t('delete_role_button_html'), project_role_path(@project, @role), method: :delete, data: { confirm: t('delete_role_confirmation') }, class: 'btn btn-danger'

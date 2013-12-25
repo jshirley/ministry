@@ -18,16 +18,21 @@
 //= require typeahead
 //= require_tree .
 
-$(document).on("ready page:change", function() {
+$(document).on("ready page:load", function() {
   $("[data-role='tagsinput']").each(function() {
-    $(this).tagsinput("destroy");
-    $(this).tagsinput();
+    try {
+      $(this).tagsinput("destroy");
+      $(this).tagsinput();
+    } catch(e) {
+      // TODO: Figure out why turbolinks causes tagsinput to spaz out.
+    };
   });
 
   $("input[data-role='typeahead']").each(function() {
-    $(this).typeahead("destroy")
+    $(this)
+      .typeahead("destroy")
       .typeahead({
-        prefetch: $(this).data('source')
+        prefetch: $(this).data('prefetch')
       });
   });
 });

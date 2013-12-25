@@ -312,7 +312,6 @@ DEPENDENCIES
   rails (= 4.0.0)
   rails-assets-bootstrap
   rails-assets-bootstrap-tagsinput
-  rails-assets-jquery (~> 1.9)
   ranked-model
   rb-fchange
   rb-fsevent
