@@ -37,10 +37,15 @@ module ProjectSearch extend ActiveSupport::Concern
     def matched_to_user(user)
       u = user
       Project.tire.search do
-       # This is a useless and filter, but using it
-       # allows us to pass a Filter object. I can't find
-       # a way to get filter to take an object. :(
-       filter :and, [ @@filter_skills.call(u.skill_list) ]
+        # This is a useless and filter, but using it
+        # allows us to pass a Filter object. I can't find
+        # a way to get filter to take an object. :(
+        filter :and, [ @@filter_skills.call(u.skill_list) ]
+        facet 'current_status' do
+          terms :current_status
+        end
+        facet('role') { terms 'roles.name'.to_sym }
+        facet('tag') { terms :tags }
       end
     end
 
@@ -51,6 +56,11 @@ module ProjectSearch extend ActiveSupport::Concern
           boolean &@@query_boost_staffing
         end
         filter :and, @@filter_staffable, @@filter_needs_staff
+        facet 'current_status' do
+          terms :current_status
+        end
+        facet('role') { terms 'roles.name'.to_sym }
+        facet('tag') { terms :tags }
       end
     end
 
@@ -64,6 +74,11 @@ module ProjectSearch extend ActiveSupport::Concern
           @@filter_staffable,
           @@filter_needs_staff,
           @@filter_skills.call(skills)
+        facet 'current_status' do
+          terms :current_status
+        end
+        facet('role') { terms 'roles.name'.to_sym }
+        facet('tag') { terms :tags }
       end
     end
 
