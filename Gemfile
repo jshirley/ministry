@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-ruby '2.0.0'
+ruby '2.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -77,7 +77,7 @@ gem 'capistrano', '< 3.0.0', group: :development
 
 # Development and test
 group :test, :development do
-  gem 'debugger'
+  gem 'debugger', '>= 1.6.5'
 
   gem 'rb-inotify', :require => false
   gem 'rb-fsevent', :require => false
