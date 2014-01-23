@@ -8,7 +8,7 @@ class Field < ActiveRecord::Base
   validates :description, presence: true
   validates :input_type, presence: true, inclusion: { in: %w(text textarea email range number phone) }
 
-  validates :required, presence: true, inclusion: { in: [ true, false ] }
+  validates :required, inclusion: { in: [ true, false ] }
 
   # TODO: This needs to move into configuration
   def self.default_fields
@@ -16,16 +16,34 @@ class Field < ActiveRecord::Base
 
     fields << Field.find_or_create_by!(
       name: "What is the purpose of the project",
-      description: "Why is this project worth the effort?",
+      description: "Why is this project worth the effort? What is its importance?",
       required: true,
-      input_type: "textarea"
+      input_type: "textarea",
+      retrospective: false,
     )
 
     fields << Field.find_or_create_by!(
-      name: "How do you measure success?",
+      name: "How will we measure success?",
       description: "What does success look like and how will it be measured?",
       required: true,
-      input_type: "textarea"
+      input_type: "textarea",
+      retrospective: false,
+    )
+
+    fields << Field.find_or_create_by!(
+      name: "What is the worst that can happen?",
+      description: "What could go wrong? Try to put yourself at the end of the project, imagine it is over and everything went wrong. It could not have been worse. Now, what happened?",
+      required: true,
+      input_type: "textarea",
+      retrospective: false,
+    )
+
+    fields << Field.find_or_create_by!(
+      name: "How did it go?",
+      description: "Did the project launch ok? Any important notes or key take-aways?",
+      required: false,
+      input_type: "textarea",
+      retrospective: true,
     )
 
     fields
