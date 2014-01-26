@@ -26,3 +26,21 @@
 .bootstrap-tagsinput {
   width: 100%;
 }
+
+#footer {
+  .social {
+    margin: 20px 0;
+    text-align: center;
+  }
+  .social-buttons {
+    display: inline-block;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+}
+
+.github-btn {
+  border: 0;
+  overflow: hidden;
+}
