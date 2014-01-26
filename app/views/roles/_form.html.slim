@@ -1,0 +1,11 @@
+= simple_form_for [ @project, @role ] do |f|
+  = f.input :name, label: 'I need a', input_html: { data: { role: 'typeahead', prefetch: names_project_roles_path(@project) } }
+  = f.input :description, label: false, placeholder: 'What does this person need to do to succeed?'
+  = f.input :quantity
+
+  div.form-actions.row
+    div.col-xs-4
+      = f.submit t('save_button_html'), class: 'btn btn-primary'
+    div.col-xs-4.offset-xs-4
+      = link_to t('cancel_button_html'), project_path(@project), class: 'btn btn-default'
+

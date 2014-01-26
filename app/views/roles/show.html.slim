@@ -1,3 +1,7 @@
-h1 = @role.name
+div.row
+  div.col-xs-9
+    h1 = @role.name
+  div.col-xs-3
+    = link_to t('delete_role_button_html'), project_role_path(@project, @role), method: :delete, data: { confirm: t('delete_role_confirmation') }, class: 'btn btn-danger'
 
-= link_to t('delete_role_button_html'), project_role_path(@project, @role), method: :delete, data: { confirm: t('delete_role_confirmation') }, class: 'btn btn-danger'
+= render "form"
