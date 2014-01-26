@@ -25,8 +25,8 @@ class Project < ActiveRecord::Base
   end
 
   def to_indexed_json
-  #   # acts-as-taggable-on requires a reload for tags to be here
-    # self.reload
+    # acts-as-taggable-on requires a reload for tags to be here
+    self.reload
     ProjectSerializer.new(self).to_json
   end
 

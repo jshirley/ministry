@@ -9,6 +9,8 @@ class FieldValue < ActiveRecord::Base
 
   validates_presence_of :value, if: :is_field_required?
 
+  scope :populated, -> { includes(:field).where("field_values.value IS NOT NULL").order("fields.row_order").references(:field) }
+
   def is_field_required?
     field.required
   end

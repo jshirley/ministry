@@ -29,13 +29,14 @@ en:
   save_button_html: "Save"
   cancel_button_html: "Cancel"
 
-  # Project creation strings
+  # Project strings
   created_project_notice: "Your project has been added!"
   created_project_alert: "Unable to add your project, please check the errors below."
   updated_project_notice: "The project has been updated!"
   updated_project_alert: "Unable to update the project, please check the errors below."
   project_tag_list_label: "Tags"
   project_tag_input_hint: "Use enter to separate tags."
+  advance_state_button_html: "Advance to %{state}"
 
   # Role Strings 
   created_role_notice: "Your role has been added!"

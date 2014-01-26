@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-
+    @roles = @project.roles
   end
 
   def edit

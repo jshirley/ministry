@@ -40,11 +40,12 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <% if signed_in? %>
-              <li><%= link_to 'Projects', projects_path %></li>
+              <li><%= link_to 'My Projects', projects_path %></li>
             <% else %>
               <li class="active"><a href="<%= root_path %>">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+            <% end %>
+            <% unless @project.nil? %>
+              <li><%= link_to 'Overview', project_path(@project) %></li>
             <% end %>
           </ul>
         </div><!-- /.nav-collapse -->

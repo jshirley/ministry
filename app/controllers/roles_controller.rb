@@ -85,7 +85,7 @@ class RolesController < ApplicationController
 
   private
   def role_data
-    params.require(:role).permit(:name, :admin, :quantity)
+    params.require(:role).permit(:name, :description, :admin, :quantity)
   end
 
   def load!
