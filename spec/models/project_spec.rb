@@ -88,7 +88,7 @@ describe Project do
           approved: true
         )
       }.to change {
-        project.may_schedule?
+        project.may_staff?
       }.from(false).to(true)
     end
   end

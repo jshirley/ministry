@@ -28,11 +28,22 @@
 }
 
 #footer {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  margin-top: 50px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+
   .social {
-    margin: 20px 0;
-    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
   }
-  .social-buttons {
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  .social-buttons li {
     display: inline-block;
     margin-bottom: 0;
     padding-left: 0;

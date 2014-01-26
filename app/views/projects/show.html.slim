@@ -3,8 +3,9 @@ h1 = @project.name
 div.btn-toolbar
   = link_to t('edit_button_html'), edit_project_path(@project), class: 'btn btn-default'
   div.btn-group.pull-right
-    - @project.aasm.states(permissible: true).each do |state|
-      = link_to t('advance_state_button_html', state: state.to_s), edit_project_path(@project), class: 'btn btn-default'
+    span.btn.btn-info.btn-disabled = @project.aasm.current_state.capitalize
+    - @project.aasm.events.each do |event|
+      = link_to t('advance_state_button_html', event: event.to_s.capitalize), project_advance_path(@project, event), method: :post, class: 'btn btn-default'
 
 - @project.field_values.populated.each do |fv|
   div.field

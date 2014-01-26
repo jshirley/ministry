@@ -4,7 +4,6 @@ class Project < ActiveRecord::Base
   # Sets up :tag_list, :tags
   acts_as_taggable
 
-
   after_touch {
     tire.update_index
   }
@@ -56,6 +55,8 @@ class Project < ActiveRecord::Base
   after_create :setup_default_fields
 
   # State Machine for status transitions
+  aasm_column :aasm_state
+
   aasm do
     state :pending, initial: true
     state :staffing

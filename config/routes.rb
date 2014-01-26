@@ -16,6 +16,8 @@ Ministry::Application.routes.draw do
         get 'names'
       end
     end
+
+    post 'advance/:event' => 'projects#advance', as: 'advance'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

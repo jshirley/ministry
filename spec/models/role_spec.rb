@@ -39,7 +39,7 @@ describe Role do
         approved: true
       )
     }.to change {
-      role.filled_count
+      role.reload.filled_count
     }.from(0).to(1)
   end
 
@@ -54,7 +54,7 @@ describe Role do
     expect {
       membership.destroy!
     }.to change {
-      role.filled_count
+      role.reload.filled_count
     }.from(1).to(0)
   end
 
@@ -67,12 +67,12 @@ describe Role do
       accepted: true,
       approved: true
     )
+
     expect {
       membership.update_attributes(role_id: documenter.id)
     }.to change {
-      role.filled_count
+      role.reload.filled_count
     }.from(1).to(0)
-    expect(documenter.filled_count).to eq(1)
   end
 
 end

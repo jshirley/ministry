@@ -36,7 +36,9 @@ en:
   updated_project_alert: "Unable to update the project, please check the errors below."
   project_tag_list_label: "Tags"
   project_tag_input_hint: "Use enter to separate tags."
-  advance_state_button_html: "Advance to %{state}"
+  advance_state_button_html: "&rarr; %{event}"
+  advanced_project_notice: "Moved from %{state_was} to %{state}."
+  advanced_project_alert: "Unable to %{event}! Still in %{state_was}!"
 
   # Role Strings 
   created_role_notice: "Your role has been added!"
