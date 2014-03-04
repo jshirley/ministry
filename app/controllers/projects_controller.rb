@@ -5,6 +5,10 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build
   end
 
+  def search
+
+  end
+
   def new
     @project = current_user.projects.build
 

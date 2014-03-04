@@ -10,6 +10,10 @@ Ministry::Application.routes.draw do
   resources :users
 
   resources :projects do
+    collection do
+      get 'search'
+    end
+
     resources :milestones
     resources :roles do
       collection do

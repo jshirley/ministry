@@ -1,7 +1,14 @@
 = simple_form_for [ @project, @role ] do |f|
-  = f.input :name, label: 'I need a', input_html: { data: { role: 'typeahead', prefetch: names_project_roles_path(@project) } }
+  div.row
+    div.col-xs-2
+      p
+        | This project needs
+    div.col-xs-2
+      = f.input :quantity, class: 'col-xs-2', label: false
+    div.col-xs-8
+      = f.input :name, label: false, input_html: { data: { role: 'typeahead', prefetch: names_project_roles_path(@project) } }
+
   = f.input :description, label: false, placeholder: 'What does this person need to do to succeed?'
-  = f.input :quantity
 
   div.form-actions.row
     div.col-xs-4
