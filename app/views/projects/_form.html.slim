@@ -1,5 +1,7 @@
 = simple_form_for @project do |f|
   = f.input :name
+  = f.input :description
+  = f.input :public
   = f.input :tag_list, label: t('project_tag_list_label'), input_html: { data: { role: "tagsinput" } }, hint: t('project_tag_input_hint')
 
   = f.simple_fields_for :field_values do |fv|

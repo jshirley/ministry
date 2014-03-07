@@ -3,8 +3,6 @@ div.page-header
 
   div.row
     div.col-xs-11
-      = render "projects/breadcrumb", terminator: @role.name
-    div.col-xs-1
-      = link_to t('delete_role_button_html'), project_role_path(@project, @role), method: :delete, data: { confirm: t('delete_role_confirmation') }, class: 'btn btn-danger pull-right'
+      = render "projects/breadcrumb", terminator: t('edit_role_breadcrumb', role: @role.name)
 
-= render "form"
+p Role details

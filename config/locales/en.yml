@@ -39,6 +39,7 @@ en:
   advance_state_button_html: "&rarr; %{event}"
   advanced_project_notice: "Moved from %{state_was} to %{state}."
   advanced_project_alert: "Unable to %{event}! Still in %{state_was}!"
+  current_state_label_html: "Currently in &ldquo;%{state}&rdquo;"
 
   # Role Strings 
   created_role_notice: "Your role has been added!"
@@ -53,3 +54,5 @@ en:
   view_role_button_html: "Details"
   delete_role_confirmation: "Are you sure you wish to remove this role? This will also remove participants from the project!"
   delete_role_button_html: "Delete" 
+  edit_role_breadcrumb: "Edit %{role}"
+  add_role_breadcrumb: "Add Role"

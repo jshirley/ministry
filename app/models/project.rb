@@ -50,6 +50,7 @@ class Project < ActiveRecord::Base
   validates :user,   presence: true
   validates :status, presence: true
   validates :name,   presence: true
+  validates :public, inclusion: { in: [ true, false ] }
 
   # Callbacks
   after_create :setup_default_fields

@@ -1,5 +1,8 @@
 class RolesController < ApplicationController
-  before_filter :authenticate_user!, :load!
+  before_filter :authenticate_user!
+
+  load_and_authorize_resource :project
+  load_and_authorize_resource :role, through: :project
 
   def index
   end
@@ -43,7 +46,9 @@ class RolesController < ApplicationController
   end
 
   def show
-
+    if can? :manage, @role
+      render :edit and return
+    end
   end
 
   def edit

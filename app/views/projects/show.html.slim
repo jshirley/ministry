@@ -1,15 +1,19 @@
 h1 = @project.name
 
-div.btn-toolbar
-  = link_to t('edit_button_html'), edit_project_path(@project), class: 'btn btn-default'
-  div.btn-group.pull-right
-    span.btn.btn-info.btn-disabled = @project.aasm.current_state.capitalize
-    - @project.aasm.events.each do |event|
-      = link_to t('advance_state_button_html', event: event.to_s.capitalize), project_advance_path(@project, event), method: :post, class: 'btn btn-default'
+- if can? :manage, @project
+  div.btn-toolbar
+    = link_to t('edit_button_html'), edit_project_path(@project), class: 'btn btn-default'
+    div.btn-group.pull-right
+      span.btn.btn-info.btn-disabled = @project.aasm.current_state.capitalize
+      - @project.aasm.events.each do |event|
+        = link_to t('advance_state_button_html', event: event.to_s.capitalize), project_advance_path(@project, event), method: :post, class: 'btn btn-default'
+
+- else
+  p = t('current_state_label_html', state: @project.aasm.current_state.capitalize)
 
 - @project.field_values.populated.each do |fv|
   div.field
     h3 = fv.field.name 
     p = simple_format fv.value
 
-= render "roles/display"
+= render "roles/display", editable: false
