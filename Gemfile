@@ -9,6 +9,9 @@ gem 'rails', '4.0.0'
 # Use pg as the database for Active Record
 gem 'pg'
 
+# Using CanCan for authorization
+gem 'cancan'
+
 # ElasticSearch
 gem 'tire'
 
