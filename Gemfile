@@ -91,8 +91,12 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'rspec-rails'
-  #gem 'capybara'
   gem 'guard-rspec'
-  #gem 'guard-cucumber'
+  gem 'guard-cucumber'
+
+  gem 'cucumber-rails', '>= 1.3.0', require: false
+  gem 'capybara', '>= 2.0.2'
+  gem 'capybara-screenshot'
+  gem 'poltergeist', ">= 1.4.0"
 end
 
