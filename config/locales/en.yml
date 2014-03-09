@@ -22,14 +22,15 @@
 en:
   hello: "Hello world"
   projects_title:
-    text: "Your Projects"
-    html: "<em>Your</em> Projects"
+    text: "Projects"
+    html: "Projects"
 
   edit_button_html: "Edit"
   save_button_html: "Save"
   cancel_button_html: "Cancel"
 
   # Project strings
+  add_project_button_html: "Start Project"
   created_project_notice: "Your project has been added!"
   created_project_alert: "Unable to add your project, please check the errors below."
   updated_project_notice: "The project has been updated!"
