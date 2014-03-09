@@ -12,4 +12,14 @@ class Role < ActiveRecord::Base
   def self.default_role_names
     [ 'Product Manager', 'Developer', 'Documenter', 'Tester', 'Evangelist' ]
   end
+
+  def pending_for(user)
+    memberships.where(user: user, approved: false, accepted: false, active: true)
+  end
+
+  # Determine if a user can apply, based on if they have a pending membership
+  # or if the project is public.
+  def can_apply?(user)
+    return true
+  end
 end

@@ -51,6 +51,8 @@ class ProjectsController < ApplicationController
 
   def show
     @roles = @project.roles
+
+    @membership = current_user.memberships.includes(:role).where(project: @project)
   end
 
   def edit

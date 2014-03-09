@@ -16,4 +16,12 @@ h1 = @project.name
     h3 = fv.field.name 
     p = simple_format fv.value
 
+- @membership.each do |membership|
+  - if membership.needs_approval?
+    = render "roles/pending_approval", membership: membership
+  - elsif membership.needs_acceptance?
+    = render "roles/pending_acceptance", membership: membership
+  - else
+    = render "roles/user_status", membership: membership
+
 = render "roles/display", editable: false

@@ -4,6 +4,10 @@ class Ability
   def initialize(user)
     project_ids = user.projects.pluck(:id)
 
+    can :manage, Membership, Membership do |membership|
+      true
+    end
+
     can :manage, Project, { user_id: user.id }
     can :read,   Project, { public: true }
 

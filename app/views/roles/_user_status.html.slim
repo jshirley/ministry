@@ -1,0 +1,6 @@
+div.alert.alert-success
+  h4 = t('user_status_in_project', role: membership.role.name)
+  - unless membership.note.blank?
+    p = simple_format membership.note
+  div.btn-group
+    = link_to t('edit_button_html'), membership_path(membership), class: 'btn btn-default'

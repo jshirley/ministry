@@ -1,0 +1,12 @@
+div.alert.alert-info
+  h4 = t('role_needs_acceptance_title_html', role: membership.role.name, membership_path: membership_path(membership))
+  p = t('role_needs_acceptance_html')
+  = simple_form_for membership do |f|
+    - membership.accepted = true
+    = f.hidden_field :accepted
+    = f.hidden_field :note
+    div.btn-toolbar
+      div.btn-group.pull-left
+        = f.submit t('accept_button_html'), class: 'btn btn-primary'
+      div.btn-group.pull-right
+        = link_to t('reject_button_html'), membership_path(membership), class: 'btn btn-danger', data: { confirmation: t('confirm_membership_rejection_text') }, method: :delete

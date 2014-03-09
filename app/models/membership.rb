@@ -13,7 +13,22 @@ class Membership < ActiveRecord::Base
   after_destroy :fix_counter_cache
   after_save :fix_counter_cache, :if => ->(er) { er.new_record? or er.role_id_changed? }
 
-  scope :active, -> { where(accepted: true, approved: true) }
+  default_scope { where(active: true) }
+
+  scope :active,  -> { where(active: true, accepted: true, approved: true) }
+  scope :pending, -> { where("memberships.active = true AND (memberships.accepted = false OR memberships.approved = false)") }
+
+  def pending?
+    approved == false or accepted == false
+  end
+
+  def needs_approval?
+    approved == false
+  end
+
+  def needs_acceptance?
+    accepted == false
+  end
 
   private
   def fix_counter_cache

@@ -1,0 +1,8 @@
+= simple_form_for @role.memberships.build(project: @project, role: @role) do |f|
+  = f.hidden_field :project_id
+  = f.hidden_field :role_id
+
+  = f.input :note
+
+  div.form-actions
+    = f.submit t('apply_button_html'), class: "btn btn-primary"

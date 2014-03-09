@@ -9,6 +9,8 @@ Ministry::Application.routes.draw do
 
   resources :users
 
+  resources :memberships
+
   resources :projects do
     collection do
       get 'search'

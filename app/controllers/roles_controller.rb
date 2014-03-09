@@ -49,6 +49,11 @@ class RolesController < ApplicationController
     if can? :manage, @role
       render :edit and return
     end
+
+    @pending = @role.pending_for(current_user).first
+    if @pending.nil?
+      @can_apply = @role.can_apply?(current_user)
+    end
   end
 
   def edit

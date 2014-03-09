@@ -1,0 +1,20 @@
+h1 = @membership.role.name
+
+- if @membership.pending?
+  - if @membership.needs_acceptance?
+    = simple_form_for @membership do |f|
+      = f.input :note
+      = f.input :accepted, wrapper: :inline_checkbox, label: t('accept_role_label_html')
+      div.form-actions
+        = f.submit t('accept_role_invitation_button_html'), class: 'btn btn-primary'
+
+  - elsif @membership.needs_approval?
+    p Waiting for project manager approval
+- else
+  = simple_form_for @membership do |f|
+    = f.input :note
+    div.form-actions
+      = f.submit t('save_button_html'), class: 'btn btn-primary'
+
+
+
