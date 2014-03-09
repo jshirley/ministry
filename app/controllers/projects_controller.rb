@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    data = project_data
+    data = project_params
     if data[:status_id].blank?
       # Need to populate with default status
       data[:status_id] = Status.initial_status.id
@@ -90,8 +90,8 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    data = project_data
-    logger.ap data
+    data = project_params
+    #logger.ap data
 
     @project.assign_attributes(data)
     if @project.valid?
@@ -115,7 +115,7 @@ class ProjectsController < ApplicationController
   end
 
   private
-  def project_data
+  def project_params
     params.require(:project).permit(:name, :tag_list, field_values_attributes: [ :id, :field_id, :value ])
   end
 
