@@ -66,7 +66,7 @@ class MembershipsController < ApplicationController
     data = membership_params
     notice = nil
 
-    logger.ap data
+    @membership.note = data[:note]
 
     if @membership.user_id == current_user.id
       @membership.accepted = data[:accepted] ? true : false

@@ -12,6 +12,7 @@ h1 = @membership.role.name
     p Waiting for project manager approval
 - else
   = simple_form_for @membership do |f|
+    = f.hidden_field :accepted
     = f.input :note
     div.form-actions
       = f.submit t('save_button_html'), class: 'btn btn-primary'
