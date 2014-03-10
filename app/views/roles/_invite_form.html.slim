@@ -1,0 +1,10 @@
+h3 = t('invite_user_title.html')
+p = t('invite_user_help.html')
+
+= simple_form_for @role.memberships.build(project: @project) do |f|
+  = f.hidden_field :project_id
+  = f.hidden_field :role_id
+
+  = f.input :email
+  div.form-actions
+    = f.submit t('invite_button_html'), class: 'btn btn-primary'

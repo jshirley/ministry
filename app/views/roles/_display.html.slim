@@ -13,15 +13,15 @@ div id="role-editor" data-add-role-uri=project_roles_path(@project) data-role-ur
         td data-bind="text: filled_count"
         td = link_to t('view_role_button_html'), '#', data: { bind: 'css: { disabled: !id() }, attr: { href: roleURL() }' }, class: 'btn btn-default btn-mini'
     - if local_assigns[:editable] == true 
-      tfoot
+      tfoot.add-role id="add-role-#{@project.id}"
         tr data-bind="enterkey: addRole"
           td
             div.form-group data-bind="css: { 'has-success': newRoleName.isModified() && newRoleName.isValid(), 'has-error': newRoleName.isModified() && !newRoleName.isValid() }"
-              input.form-control data-bind="typeahead: newRoleName, value: newRoleName" id="newRoleName" data-prefetch=names_project_roles_path(@project)
+              input.form-control name="role" data-bind="typeahead: newRoleName, value: newRoleName" id="newRoleName" data-prefetch=names_project_roles_path(@project)
           td colspan="2"
             div.form-group data-bind="css: { 'has-success': newRoleQuantity.isModified() && newRoleQuantity.isValid(), 'has-error': newRoleQuantity.isModified() && !newRoleQuantity.isValid() }"
               label
-                input.form-control data-bind="value: newRoleQuantity" type="number" min="1"
+                input.form-control name="quantity" data-bind="value: newRoleQuantity" type="number" min="1"
           td
             a.btn.btn-default data-bind="click: addRole, css: { 'btn-danger': (newRoleName.isModified() && !newRoleName.isValid()) || !newRoleQuantity.isValid() }" href="#"
               = t('add_role_button_html')

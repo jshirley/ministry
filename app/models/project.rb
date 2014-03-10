@@ -93,6 +93,11 @@ class Project < ActiveRecord::Base
   end
 
   # Object methods
+  # Public: Returns a list of all managers on this project
+  # Returns a collection of Users
+  def managers
+    User.where(id: user_id)
+  end
 
   # Public: Return a list of Roles that are not fully staffed
   # Returns a result set of Roles

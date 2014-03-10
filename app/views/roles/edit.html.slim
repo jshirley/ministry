@@ -8,3 +8,7 @@ div.page-header
       = link_to t('delete_role_button_html'), project_role_path(@project, @role), method: :delete, data: { confirm: t('delete_role_confirmation') }, class: 'btn btn-danger pull-right'
 
 = render "form"
+
+- if can?(:manage, @role) and @role.filled_count < @role.quantity
+  hr
+  = render "invite_form"

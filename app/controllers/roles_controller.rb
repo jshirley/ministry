@@ -28,7 +28,7 @@ class RolesController < ApplicationController
   end
 
   def create
-    data = role_data
+    data = role_params
     @role = @project.roles.build(data)
     if @role.valid?
       @role.save!
@@ -65,7 +65,7 @@ class RolesController < ApplicationController
   end
 
   def update
-    data = role_data
+    data = role_params
 
     @role.assign_attributes(data)
     if @role.valid?
@@ -94,7 +94,7 @@ class RolesController < ApplicationController
   end
 
   private
-  def role_data
+  def role_params
     params.require(:role).permit(:name, :description, :admin, :quantity)
   end
 

@@ -2,7 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    project_ids = user.projects.pluck(:id)
+    owned_project_ids  = user.projects.pluck(:id)
+    member_project_ids = user.memberships.authorized.pluck(:project_id)
 
     can :manage, Membership, Membership do |membership|
       true
@@ -11,10 +12,8 @@ class Ability
     can :manage, Project, { user_id: user.id }
     can :read,   Project, { public: true }
 
-    can :manage, Role, { project_id: project_ids }
-    can :read, Role, Role do |role|
-      role.project.public == true
-    end
+    can :manage, Role, { project_id: owned_project_ids }
+    can :read,   Role, { project_id: member_project_ids }
 
     # Define abilities for the passed in user here. For example:
     #

@@ -15,8 +15,9 @@ class Membership < ActiveRecord::Base
 
   default_scope { where(active: true) }
 
-  scope :active,  -> { where(active: true, accepted: true, approved: true) }
-  scope :pending, -> { where("memberships.active = true AND (memberships.accepted = false OR memberships.approved = false)") }
+  scope :authorized,  -> { where(active: true, approved: true) }
+  scope :active,      -> { where(active: true, accepted: true, approved: true) }
+  scope :pending,     -> { where("memberships.active = true AND (memberships.accepted = false OR memberships.approved = false)") }
 
   def pending?
     approved == false or accepted == false
