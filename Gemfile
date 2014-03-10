@@ -93,7 +93,8 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard-cucumber'
-
+  gem 'email_spec'
+  gem 'action_mailer_cache_delivery'
   gem 'cucumber-rails', '>= 1.3.0', require: false
   gem 'capybara', '>= 2.0.2'
   gem 'capybara-screenshot'

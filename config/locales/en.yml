@@ -25,9 +25,11 @@ en:
     text: "Projects"
     html: "Projects"
 
+  # Buttons
   edit_button_html: "Edit"
   save_button_html: "Save"
   cancel_button_html: "Cancel"
+  invite_button_html: "Invite"
 
   # Project strings
   add_project_button_html: "Start Project"
@@ -62,7 +64,8 @@ en:
   apply_button_html: "Apply"
   cannot_apply_alert: "Sorry, you may not apply for this role at this time."
   role_applied_notice: "You have applied for this role! We'll let you know what comes next."
-  role_applied_alert: "We could not complete this request, please try again."
+  role_invited_notice: "We have invited this person, stay tuned."
+  membership_create_alert: "We could not complete this request, please try again."
   role_needs_approval_title: "You have applied for %{role}!"
   role_needs_approval_title_html: "You have applied for <a href=\"%{membership_path}\">%{role}</a>!"
   role_needs_approval_text: "The owners of this project have been notified and will update your application status soon!"
@@ -79,3 +82,12 @@ en:
   role_approved_notice: "Great! This application has been approved."
   membership_update_alert: "Sorry, we could not update the application."
   user_status_in_project: "Your role: %{role}."
+
+  # Membership Strings
+  invite_user_title:
+    html: "Invite someone!"
+    text: "Invite someone!"
+  invite_user_help:
+    html: "Projects are better together, invite someone to help you out!"
+    text: "Projects are better together, invite someone to help you out!"
+
