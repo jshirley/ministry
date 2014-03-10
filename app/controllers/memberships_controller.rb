@@ -15,6 +15,7 @@ class MembershipsController < ApplicationController
 
     # Are we applying or inviting?
     @membership = nil
+    notice = nil
 
     # Inviting!
     if can? :manage, @project
@@ -26,6 +27,7 @@ class MembershipsController < ApplicationController
       )
 
       @membership = @role.memberships.build(data)
+      notice = t('role_invited_notice')
     else
       # Applying, requires the role can be applied to
       unless @role.can_apply?(current_user)
@@ -43,14 +45,19 @@ class MembershipsController < ApplicationController
       )
 
       @membership = @role.memberships.build(data)
+
+      notice = t('role_applied_notice')
     end
 
     if @membership and @membership.valid?
       @membership.save!
-      redirect_to project_path(@project), notice: t('role_applied_notice')
+
+      MembershipMailer.notify(@membership)
+
+      redirect_to project_path(@project), notice: notice
     else
       logger.debug @membership.errors.full_messages
-      redirect_to project_role_path(@project, @role), alert: t('role_applied_alert')
+      redirect_to project_role_path(@project, @role), alert: t('membership_create_alert')
     end
   end
 
@@ -85,6 +92,6 @@ class MembershipsController < ApplicationController
 
   private
   def membership_params
-    params.require(:membership).permit(:project_id, :role_id, :note, :accepted, :approved)
+    params.require(:membership).permit(:project_id, :role_id, :note, :accepted, :approved, :email)
   end
 end
