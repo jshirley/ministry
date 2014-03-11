@@ -5,8 +5,9 @@
   = f.input :tag_list, label: t('project_tag_list_label'), input_html: { data: { role: "tagsinput" } }, hint: t('project_tag_input_hint')
 
   = f.simple_fields_for :field_values do |fv|
-    = fv.input :field_id, as: :hidden
-    = fv.input :value, label: fv.object.field.name, required: fv.object.field.required
+    - if not @project.new_record? or ( @project.new_record? and not fv.object.field.retrospective )
+      = fv.input :field_id, as: :hidden
+      = fv.input :value, label: fv.object.field.name, required: fv.object.field.required
 
   div.form-actions.row
     div.col-xs-4
