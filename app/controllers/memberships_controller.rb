@@ -23,8 +23,13 @@ class MembershipsController < ApplicationController
         project:  @project,
         accepted: false,
         approved: true,
-        accepted: true
+        accepted: false
       )
+
+      existing_user = User.where(email: data[:email]).first
+      unless existing_user.nil?
+        data[:user_id] = existing_user.id
+      end
 
       @membership = @role.memberships.build(data)
       notice = t('role_invited_notice')
@@ -51,8 +56,8 @@ class MembershipsController < ApplicationController
 
     if @membership and @membership.valid?
       @membership.save!
-
-      MembershipMailer.notify(@membership)
+      logger.info "Sending email now!"
+      MembershipMailer.notify(@membership).deliver!
 
       redirect_to project_path(@project), notice: notice
     else
