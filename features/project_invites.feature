@@ -22,6 +22,6 @@ Feature: Inviting users to collaborate
     Then I should see a translated message "role_invited_notice"
     Then "invitee@example.com" should receive 1 email
     And I sign out
-    And I sign in as "inviter@example.com"
+    And I sign in as "invitee@example.com"
     Then I should have a pending invitation to "Testing Invites" as a "Developer"
 

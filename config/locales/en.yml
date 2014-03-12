@@ -91,3 +91,6 @@ en:
     html: "Projects are better together, invite someone to help you out!"
     text: "Projects are better together, invite someone to help you out!"
 
+  # Invite Emails
+  notify_application_subject: "%{user} has applied for \"%{role}\" on \"%{project}\""
+  notify_invited_subject: "You have been invited to work on \"%{project}\" as a \"%{role}\""

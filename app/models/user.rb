@@ -35,4 +35,11 @@ class User < ActiveRecord::Base
   has_many :memberships, inverse_of: :user
   has_many :milestones, inverse_of: :user
   has_many :contributing_projects, through: :memberships, source: :project
+
+  def display_name
+    if self.name.blank?
+      return self.email
+    end
+    self.name
+  end
 end

@@ -44,6 +44,8 @@ When(/^I sign in as "(.*?)"$/) do |email|
     fill_in 'user[password]', with: @passwords[email]
     click_button 'Sign in'
   end
+
+  page.should have_selector ".alert", text: 'Signed in successfully.'
 end
 
 When(/^I sign out$/) do

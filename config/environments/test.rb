@@ -36,6 +36,9 @@ Ministry::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :cache
 
+  config.action_mailer.default_url_options = { :host => 'localhost:3010' }
+  config.action_mailer.asset_host = 'http://localhost:3010'
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 end

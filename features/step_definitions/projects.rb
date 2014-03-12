@@ -28,10 +28,6 @@ Then(/^I edit the project "(.*?)"$/) do |project|
 end
 
 Then(/^I should add (\d+) role called "(.*?)"$/) do |quantity, role|
-  page.all(:css, '.add-role input').each do |el|
-    puts "Got element? #{el.inspect}, #{el.native['name']}"
-  end
-
   # We must be on the edit page already.
   within '.add-role' do
     fill_in 'role', with: role
@@ -57,7 +53,7 @@ Then(/^I invite the user "(.*?)"$/) do |email|
 end
 
 Then(/^I should have a pending invitation to "(.*?)" as a "(.*?)"$/) do |project, name|
-  visit_path projects_path
+  visit projects_path
   click_link project
 
   page.should have_selector "form.edit_membership"
