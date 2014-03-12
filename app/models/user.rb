@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [ :github ]
 
+  after_create :find_orphaned_memberships
+
   def self.find_for_github_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
@@ -41,5 +43,10 @@ class User < ActiveRecord::Base
       return self.email
     end
     self.name
+  end
+
+  private
+  def find_orphaned_memberships
+    Membership.where(user_id: nil, email: self.email).update_all(user_id: self.id)
   end
 end

@@ -6,7 +6,16 @@ Feature: Inviting users to collaborate
 
   Scenario:
     When I register a new account as "manager@example.com"
-    And create a private project called "Testing Projects"
+    And create a private project called "Testing Invites"
+    Then I edit the project "Testing Invites"
+    And I should add 1 role called "Developer"
+    And I view the role "Developer" on project "Testing Invites"
+    And I invite the user "invitee@example.com"
+    Then I should see a translated message "role_invited_notice"
+    Then "invitee@example.com" should receive 1 email
+    And I sign out
+    And I register a new account as "invitee@example.com"
+    Then I should have a pending invitation to "Testing Invites" as a "Developer"
 
   @javascript
   Scenario:
