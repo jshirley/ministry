@@ -11,6 +11,7 @@ class Ability
 
     can :manage, Project, { user_id: user.id }
     can :read,   Project, { public: true }
+    can :read,   Project, { id: member_project_ids }
 
     can :manage, Role, { project_id: owned_project_ids }
     can :read,   Role, { project_id: member_project_ids }
