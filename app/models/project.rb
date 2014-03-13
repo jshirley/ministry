@@ -33,6 +33,8 @@ class Project < ActiveRecord::Base
   belongs_to :user, inverse_of: :projects
   belongs_to :status, inverse_of: :projects
 
+  has_many :obstacles, inverse_of: :project, dependent: :destroy
+
   has_many :field_values, inverse_of: :project, dependent: :destroy
   has_many :fields, through: :field_values
   accepts_nested_attributes_for :field_values
