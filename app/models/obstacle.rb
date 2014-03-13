@@ -1,4 +1,7 @@
 class Obstacle < ActiveRecord::Base
+  include RankedModel
+  ranks :row_order, with: :project_id
+
   belongs_to :project, inverse_of: :obstacles
   belongs_to :user, inverse_of: :obstacles
 
