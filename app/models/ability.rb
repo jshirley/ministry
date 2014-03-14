@@ -16,6 +16,10 @@ class Ability
     can :manage, Role, { project_id: owned_project_ids }
     can :read,   Role, { project_id: member_project_ids }
 
+    # TODO: Should probably also allow public projects to :read, yeah?
+    can :manage, Obstacle, { project_id: owned_project_ids }
+    can :manage, Obstacle, { project_id: member_project_ids }
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
