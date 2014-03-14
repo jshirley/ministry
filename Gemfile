@@ -42,7 +42,7 @@ gem 'simple_form'
 gem 'country_select'
 gem "combined_time_select", "~> 1.0.0"
 
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.0'
 gem 'less-rails'
 # From https://rails-assets.org, bower-based components
 gem 'rails-assets-bootstrap'
