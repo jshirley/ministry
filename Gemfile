@@ -4,7 +4,7 @@ source 'https://rails-assets.org'
 ruby '2.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.0rc1'
 
 # Use pg as the database for Active Record
 gem 'pg'
@@ -34,7 +34,8 @@ gem 'validates_timeliness', github: 'softace/validates_timeliness', branch: 'sup
 gem 'ranked-model'
 gem 'acts-as-taggable-on'
 
-gem 'figaro'
+# See https://github.com/laserlemon/figaro/issues/86
+gem 'figaro', github: 'laserlemon/figaro', branch: 'master'
 
 # View stuff
 gem 'slim'
