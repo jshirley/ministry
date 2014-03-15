@@ -7,6 +7,7 @@ class Obstacle < ActiveRecord::Base
 
   validates :user, presence: true
   validates :project, presence: true
+  validates :description, presence: true
 
   # Need to sort out flag
   validates :flag, inclusion: { in: [ 0, 1 ] }

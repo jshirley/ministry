@@ -10,8 +10,14 @@ class Ability
     end
 
     can :manage, Project, { user_id: user.id }
+    can :advance, Project, { user_id: user.id }
+
     can :read,   Project, { public: true }
     can :read,   Project, { id: member_project_ids }
+    can :tactical,  Project, { public: true }
+    can :strategic, Project, { public: true }
+    can :tactical,  Project, { id: member_project_ids }
+    can :strategic, Project, { id: member_project_ids }
 
     can :manage, Role, { project_id: owned_project_ids }
     can :read,   Role, { project_id: member_project_ids }

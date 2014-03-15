@@ -43,6 +43,15 @@ en:
   advanced_project_notice: "Moved from %{state_was} to %{state}."
   advanced_project_alert: "Unable to %{event}! Still in %{state_was}!"
   current_state_label_html: "Currently in &ldquo;%{state}&rdquo;"
+  strategic_view_link_html: "Strategy"
+  tactical_view_link_html: "Tactics"
+
+  # Obstacles
+  add_obstacle_button:
+    text: "Add Obstacle"
+    html: "Add Obstacle"
+  created_obstacle_notice: "The obstacle has been added to the project."
+  created_obstacle_alert: "Could not add this obstacle! Check for errors and try again."
 
   # Role Strings 
   created_role_notice: "Your role has been added!"
