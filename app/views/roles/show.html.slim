@@ -2,15 +2,13 @@ div.page-header
   h1 = @role.name
 
   div.row
-    div.col-xs-11
-      = render "projects/breadcrumb", terminator: t('edit_role_breadcrumb', role: @role.name)
+    div.col-xs-10
+      = render "breadcrumb", terminator: t('edit_role_breadcrumb', role: @role.name)
 
 - if @pending
   = render "pending_role"
 - elsif @can_apply
   h3 = t('apply_role_header')
-  = link_to 'Apply', new_membership_path(project_id: @project.id, role_id: @role.id)
-
   = render "apply_form"
 - else 
   p Cannot apply for this role

@@ -1,2 +1,10 @@
+div.page-header
+  h1 = t('project_roles_title.html', project: @project.name)
+
+  div.row
+    div.col-xs-10
+      = render "breadcrumb", terminator: t('roles_label')
+
+h1 = @roles.size
 
 = render "roles/display", editable: can?(:manage, @project)

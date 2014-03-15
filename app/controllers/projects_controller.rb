@@ -51,9 +51,10 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @roles = @project.roles
-
+    @roles      = @project.roles
+    @obstacles  = @project.obstacles
     @membership = current_user.memberships.includes(:role).where(project: @project)
+
     @view ||= 'strategic'
 
     render 'show'

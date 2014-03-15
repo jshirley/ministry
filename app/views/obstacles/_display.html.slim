@@ -1,9 +1,11 @@
 table.table
   thead
-    th Obstacle
-    th Strategy
-    th Outcome/Reward
+    th = link_to t('obstacle_label'), project_obstacles_path(@project)
+    th = t('obstacle_strategy_label')
+    th = t('obstacle_results_label')
     th
+      - if can? :update, @project
+        = link_to t('add_button_html'), new_project_obstacle_path(@project), class: 'btn btn-default btn-xs'
   tbody
     - @obstacles.each do |obstacle|
       tr
