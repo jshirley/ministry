@@ -1,0 +1,7 @@
+ol.breadcrumb
+  li = link_to @project.name, project_path(@project)
+  - if @obstacle.nil?
+    li.active = t('obstacles_label')
+  - else
+    li = link_to t('obstacles_label'), project_obstacles_path(@project)
+    li.active = t('obstacle_label')

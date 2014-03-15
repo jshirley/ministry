@@ -1,4 +1,3 @@
-
 h1 = t('project_obstacle_title.html', project: @project.name)
 
 div.row
@@ -7,5 +6,6 @@ div.row
   div.col-sm-2
     div.btn-group
       = link_to t('add_obstacle_button.html'), new_project_obstacle_path(@project), class: 'btn btn-default'
+      = link_to t('edit_obstacle_button.html'), edit_project_obstacle_path(@project, @obstacle), class: 'btn btn-default'
 
-= render "display"
+| Foo
