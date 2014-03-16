@@ -6,7 +6,7 @@ h1 = @project.name
     div.btn-group.pull-right
       span.btn.btn-info.btn-disabled = @project.aasm.current_state.capitalize
       - @project.aasm.events.each do |event|
-        = link_to t('advance_state_button_html', event: event.to_s.capitalize), project_advance_path(@project, event), method: :post, class: 'btn btn-default'
+        = link_to t('advance_state_button_html', event: event.to_s.capitalize), advance_project_path(@project, event), method: :post, class: 'btn btn-default'
 
 - else
   p = t('current_state_label_html', state: @project.aasm.current_state.capitalize)
@@ -24,4 +24,12 @@ h1 = @project.name
   - else
     = render "roles/user_status", membership: membership
 
-= render "roles/display", editable: false
+ul.nav.nav-tabs
+  li class=(@view=="strategic" ? "active" : "")
+    = link_to t('strategic_view_link_html'), strategic_project_path(@project)
+  li class=(@view=="tactical" ? "active" : "")
+    = link_to t('tactical_view_link_html'), tactical_project_path(@project)
+
+div.container
+  = render @view
+

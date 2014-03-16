@@ -3,6 +3,18 @@ require 'spec_helper'
 describe Project do
   let!(:project) { FactoryGirl.create(:project) }
 
+  # TODO: Need to fix the order of these tests. Move the field serializer here, too?
+  context "serializer" do
+    it "serializes obstacles" do
+      obstacle = project.obstacles.create!(
+        user: project.user,
+        flag: 0,
+        description: "A new obstacle has hit us."
+      )
+      expect(ProjectSerializer.new(project).to_json).to include(%Q("description":"#{obstacle.description}"))
+    end
+  end
+
   context "fields" do
     it "creates default fields" do
       expect(project.field_values.size).to eq(Field.default_fields.size)
@@ -128,11 +140,13 @@ describe Project do
 
     context "matching search" do
       it "from DB query" do
+        skills = user.skills
+        skill  = skills.first.name
         expect {
-          project.tag_list = %w(scala play)
+          project.tag_list = [ skill, "something else" ]
           project.save!
         }.to change {
-          Project.tagged_with(user.skills, any: true).count
+          Project.tagged_with(skill, any: true).count
         }.from(0).to(1)
 
         clean_es!
@@ -155,5 +169,4 @@ describe Project do
       end
     end
   end
-
 end

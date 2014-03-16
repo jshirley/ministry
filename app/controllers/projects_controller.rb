@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_user!
 
   load_and_authorize_resource
+  #skip_authorize_resource only: [ :advance, :tactical, :strategic ]
 
   def index
     @project = current_user.projects.build
@@ -50,9 +51,23 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @roles = @project.roles
-
+    @roles      = @project.roles
+    @obstacles  = @project.obstacles
     @membership = current_user.memberships.includes(:role).where(project: @project)
+
+    @view ||= 'strategic'
+
+    render 'show'
+  end
+
+  def strategic
+    @view = 'strategic'
+    show
+  end
+
+  def tactical
+    @view = 'tactical'
+    show
   end
 
   def edit
@@ -67,6 +82,11 @@ class ProjectsController < ApplicationController
 
   def advance
     event = params[:event]
+
+    #unless can? :manage, @project
+    #  redirect_to project_path(@project), alert: t('advance_project_error')
+    #  return
+    #end
 
     state_was = @project.aasm.current_state.capitalize
 

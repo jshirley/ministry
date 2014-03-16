@@ -26,6 +26,7 @@ en:
     html: "Projects"
 
   # Buttons
+  add_button_html: "Add"
   edit_button_html: "Edit"
   save_button_html: "Save"
   cancel_button_html: "Cancel"
@@ -43,14 +44,41 @@ en:
   advanced_project_notice: "Moved from %{state_was} to %{state}."
   advanced_project_alert: "Unable to %{event}! Still in %{state_was}!"
   current_state_label_html: "Currently in &ldquo;%{state}&rdquo;"
+  strategic_view_link_html: "Strategy"
+  tactical_view_link_html: "Tactics"
+
+  # Obstacles
+  obstacles_label: "Obstacles"
+  obstacle_label: "Obstacle"
+  obstacle_strategy_label: "How to overcome?"
+  obstacle_results_label: "Results/Reward"
+  project_obstacle_title:
+    text: "Obstacles for %{project}"
+    html: "Obstacles for &ldquo;%{project}&rdquo;"
+  add_obstacle_button:
+    text: "Add Obstacle"
+    html: "Add Obstacle"
+  edit_obstacle_button:
+    text: "Edit"
+    html: "Edit"
+  created_obstacle_notice: "The obstacle has been added to the project."
+  created_obstacle_alert: "Could not add this obstacle! Check for errors and try again."
+  updated_obstacle_notice: "The obstacle has been updated."
+  updated_obstacle_alert: "Could not update this obstacle! Check for errors and try again."
+  destroyed_obstacle_notice: "The obstacle has been removed."
+  destroyed_obstacle_alert: "Unable to remove this obstacle."
 
   # Role Strings 
+  project_roles_title:
+    text: "%{project} Collaborators"
+    html: "%{project} Collaborators"
   created_role_notice: "Your role has been added!"
   created_role_alert: "Unable to add the role, please check the errors below."
   updated_role_notice: "The role has been updated!"
   updated_role_alert: "Unable to update the role, please check the errors below."
   updated_role_alert: "Unable to update the role, please check the errors below."
   removed_role_notice: "This role has been removed from the project."
+  roles_label: "Roles"
   role_name_label: "Role"
   role_quantity_label: "How many?"
   add_role_button_html: "Add"

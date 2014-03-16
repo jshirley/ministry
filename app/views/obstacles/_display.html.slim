@@ -1,0 +1,19 @@
+table.table
+  thead
+    th = link_to t('obstacle_label'), project_obstacles_path(@project)
+    th = t('obstacle_strategy_label')
+    th = t('obstacle_results_label')
+    th
+      - if can? :update, @project
+        = link_to t('add_button_html'), new_project_obstacle_path(@project), class: 'btn btn-default btn-xs'
+  tbody
+    - @obstacles.each do |obstacle|
+      tr
+        td = simple_format obstacle.description
+        td = simple_format obstacle.strategy
+        td = simple_format obstacle.results
+        td
+          - if can? :manage, obstacle
+            = link_to t('edit_button_html'), project_obstacle_path(@project, obstacle), class: 'btn btn-default btn-xs'
+          - else
+            | &nbsp;

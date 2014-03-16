@@ -1,0 +1,7 @@
+= simple_form_for [ @project, @obstacle ] do |f|
+  = f.input :description
+  = f.input :strategy
+  = f.input :results
+
+  div.form-actions
+    = f.submit t('save_button_html'), class: 'btn btn-primary'

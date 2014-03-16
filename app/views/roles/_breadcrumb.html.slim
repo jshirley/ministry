@@ -1,0 +1,8 @@
+ol.breadcrumb
+  li
+    = link_to @project.name, project_path(@project)
+  - if @role.nil?
+    li.active = terminator
+  - else
+    li = link_to t('roles_label'), project_roles_path(@project)
+    li.active = terminator

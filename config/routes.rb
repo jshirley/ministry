@@ -17,13 +17,19 @@ Ministry::Application.routes.draw do
     end
 
     resources :milestones
+    resources :obstacles
     resources :roles do
       collection do
         get 'names'
       end
     end
 
-    post 'advance/:event' => 'projects#advance', as: 'advance'
+    member do
+      get 'strategic'
+      get 'tactical'
+
+      post 'advance/:event' => 'projects#advance', as: 'advance'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,7 @@
+- if @obstacles.size > 0
+  = render "obstacles/display"
+- else 
+  div.btn-group
+    = link_to t('add_obstacle_button.html'), new_project_obstacle_path(@project), class: 'btn btn-default'
+  p
+    | TODO: Add obstacles help text
