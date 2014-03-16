@@ -3,9 +3,11 @@ class ProjectSerializer < ActiveModel::Serializer
 
   attributes :id, :name, :tags, :current_status
 
-  has_many :roles
+  has_many :obstacles
+
   has_many :field_values, root: :content, key: "content"
 
+  has_many :roles
   def roles
     # FIXME: If I just do object.roles it throws a Pg error for some reason
     Role.where("roles.project_id = ? AND roles.quantity > 0", object.id).to_a
