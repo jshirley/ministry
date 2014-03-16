@@ -44,7 +44,7 @@
             <% else %>
               <li class="active"><a href="<%= root_path %>">Home</a></li>
             <% end %>
-            <% unless @project.nil? %>
+            <% if @project and not @project.new_record? %>
               <li><%= link_to 'Overview', project_path(@project) %></li>
             <% end %>
           </ul>
