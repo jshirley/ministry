@@ -12,4 +12,8 @@ table.table
         td = simple_format obstacle.description
         td = simple_format obstacle.strategy
         td = simple_format obstacle.results
-        td = link_to t('edit_button_html'), project_obstacle_path(@project, obstacle), class: 'btn btn-default btn-xs'
+        td
+          - if can? :manage, obstacle
+            = link_to t('edit_button_html'), project_obstacle_path(@project, obstacle), class: 'btn btn-default btn-xs'
+          - else
+            | &nbsp;
