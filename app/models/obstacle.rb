@@ -2,7 +2,9 @@ class Obstacle < ActiveRecord::Base
   include RankedModel
   ranks :row_order, with: :project_id
 
-  belongs_to :project, inverse_of: :obstacles
+  default_scope { where( active: true ).order(:row_order) }
+
+  belongs_to :project, inverse_of: :obstacles, touch: true
   belongs_to :user, inverse_of: :obstacles
 
   validates :user, presence: true

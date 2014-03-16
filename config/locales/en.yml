@@ -63,6 +63,10 @@ en:
     html: "Edit"
   created_obstacle_notice: "The obstacle has been added to the project."
   created_obstacle_alert: "Could not add this obstacle! Check for errors and try again."
+  updated_obstacle_notice: "The obstacle has been updated."
+  updated_obstacle_alert: "Could not update this obstacle! Check for errors and try again."
+  destroyed_obstacle_notice: "The obstacle has been removed."
+  destroyed_obstacle_alert: "Unable to remove this obstacle."
 
   # Role Strings 
   project_roles_title:
