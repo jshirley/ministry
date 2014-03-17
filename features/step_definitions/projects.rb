@@ -40,6 +40,8 @@ Then(/^I view the role "(.*?)" on project "(.*?)"$/) do |role, project|
   visit projects_path
   click_link project
 
+  click_link I18n.t('tactical_view_link_html')
+
   within find('tr', text: role) do
     click_link 'Details'
   end
