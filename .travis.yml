@@ -1,5 +1,6 @@
 ---
 language: ruby
+cache: bundler
 branches:
   only:
     - master
@@ -13,4 +14,8 @@ services:
 
 before_script:
   - psql -c 'create database ministry_test;' -U postgres
+
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate
+  - bundle exec rspec spec/
 
