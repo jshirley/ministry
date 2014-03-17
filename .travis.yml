@@ -11,5 +11,6 @@ services:
   - postgresql
   - elasticsearch
 
-
+before_script:
+  - psql -c 'create database ministry_test;' -U postgres
 
