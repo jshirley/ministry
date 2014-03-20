@@ -1,0 +1,16 @@
+div.container
+  div.col-xs-2
+    - @results.facets.each do |facet, values|
+      h4 = facet.humanize
+      ul.nav.nav-pills.nav-stacked
+        - values['terms'].each do |f|
+          li
+            a href=search_projects_path(q: @query, filters: { tag: f['term'] })
+              = f['term']
+              span.badge.pull-right = f['count']
+  div.col-xs-10
+    - @results.each do |result|
+      div.project
+        h1 = link_to result[:name], project_path(result[:id])
+
+    small = t('search_result_statistics', count: @results.size)

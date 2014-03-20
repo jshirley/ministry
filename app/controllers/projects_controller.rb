@@ -9,7 +9,16 @@ class ProjectsController < ApplicationController
   end
 
   def search
-
+    query = params[:q]
+    if query
+      @query = query
+      @results = Project.search do
+        query { string query }
+        facet 'tags' do
+          terms :tags
+        end
+      end
+    end
   end
 
   def new

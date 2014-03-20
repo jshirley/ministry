@@ -47,6 +47,10 @@ en:
   strategic_view_link_html: "Strategy"
   tactical_view_link_html: "Tactics"
 
+  search_result_statistics:
+    zero: "No search results, try harder."
+    one: "One result, how lucky. Maybe we should just take you directly to that project?"
+    other: "Received %{count} results in less than 3 parsecs."
   # Obstacles
   obstacles_label: "Obstacles"
   obstacle_label: "Obstacle"

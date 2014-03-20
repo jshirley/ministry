@@ -1,3 +1,11 @@
 h1 Project Search
 
-p TBD
+form.horizontal-form role="role" method="get" action=search_projects_path
+  div.row
+    div.form-group.col-xs-10
+      input.form-control.col-xs-10 type="text" placeholder="Search" name="q" 
+    button.btn.btn-primary type="submit"
+      | Go
+
+- if @results
+  = render "search_results"
