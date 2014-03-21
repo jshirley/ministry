@@ -9,14 +9,18 @@ class ProjectsController < ApplicationController
   end
 
   def search
-    query = params[:q]
-    if query
+    query   = params[:q]
+    query   = '*' if query.blank?
+
+    filters = params[:filter] ? filter_params : nil
+    if query or filters
       @query = query
       @results = Project.search do
         query { string query }
         facet 'tags' do
           terms :tags
         end
+        filter :terms, filters unless filters.nil?
       end
     end
   end
@@ -146,6 +150,10 @@ class ProjectsController < ApplicationController
   private
   def project_params
     params.require(:project).permit(:name, :tag_list, field_values_attributes: [ :id, :field_id, :value ])
+  end
+
+  def filter_params
+    params.require(:filter).permit(tags: [])
   end
 
   def load!

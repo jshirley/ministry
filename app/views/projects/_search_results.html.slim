@@ -5,7 +5,7 @@ div.container
       ul.nav.nav-pills.nav-stacked
         - values['terms'].each do |f|
           li
-            a href=search_projects_path(q: @query, filters: { tag: f['term'] })
+            a href=search_projects_path(q: @query, filter: { facet => [ f['term'] ] })
               = f['term']
               span.badge.pull-right = f['count']
   div.col-xs-10
