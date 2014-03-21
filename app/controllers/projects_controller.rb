@@ -14,12 +14,31 @@ class ProjectsController < ApplicationController
 
     filters = params[:filter] ? filter_params : nil
     if query or filters
-      @query = query
+      @query   = query
+
+      # If we have filters, create a lookup so
+      # we can mark them as active in the view
+      if filters
+        @filters = {}
+        filters.each do |facet, values|
+          @filters[facet] = {}
+          values.each do |term|
+            @filters[facet][term] = true
+          end
+        end
+      end
+
       @results = Project.search do
         query { string query }
-        facet 'tags' do
-          terms :tags
+
+        # Setup the faceting from the facetable fields (defaults)
+        Project.facets.each do |facet|
+          facet facet.to_s do
+            terms facet
+          end
         end
+
+        # Filter if we have filters
         filter :terms, filters unless filters.nil?
       end
     end
@@ -153,7 +172,9 @@ class ProjectsController < ApplicationController
   end
 
   def filter_params
-    params.require(:filter).permit(tags: [])
+    # Fetch the list of acceptable facetable terms from the Project model.
+    list = Project.facets.map { |term| { term => [] } }
+    params.require(:filter).permit(*list)
   end
 
   def load!

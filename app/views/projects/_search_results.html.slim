@@ -4,7 +4,7 @@ div.container
       h4 = facet.humanize
       ul.nav.nav-pills.nav-stacked
         - values['terms'].each do |f|
-          li
+          li class=(@filters.has_key?(facet) and @filters[facet][f['term']] ? 'active' : '')
             a href=search_projects_path(q: @query, filter: { facet => [ f['term'] ] })
               = f['term']
               span.badge.pull-right = f['count']

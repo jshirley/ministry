@@ -29,6 +29,10 @@ class Project < ActiveRecord::Base
     ProjectSerializer.new(self).to_json
   end
 
+  def self.facets
+    return [ :tags, :current_status ]
+  end
+
   # Relationships
   belongs_to :user, inverse_of: :projects
   belongs_to :status, inverse_of: :projects
