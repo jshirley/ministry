@@ -98,6 +98,18 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def advance_to(state)
+    may_name = "may_#{state}?".to_sym
+    if self.respond_to?(may_name) and self.send(may_name)
+      self.send(state.to_sym)
+      self.save!
+      true
+    else
+      logger.info "Unable to advance #{self.id} to #{state}, via #{may_name}"
+      false
+    end
+  end
+
   # Object methods
   # Public: Returns a list of all managers on this project
   # Returns a collection of Users

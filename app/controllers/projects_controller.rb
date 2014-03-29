@@ -113,20 +113,11 @@ class ProjectsController < ApplicationController
   end
 
   def advance
-    event = params[:event]
-
-    #unless can? :manage, @project
-    #  redirect_to project_path(@project), alert: t('advance_project_error')
-    #  return
-    #end
+    event = params[:event] || @project.aasm.current_state
 
     state_was = @project.aasm.current_state.capitalize
 
-    may_name = "may_#{event}?".to_sym
-
-    if @project.respond_to?(may_name) and @project.send(may_name)
-      @project.send(event.to_sym)
-      @project.save!
+    if @project.advance_to(event)
       state = @project.aasm.current_state.capitalize
       respond_to do |format|
         format.html { redirect_to project_path(@project), notice: t('advanced_project_notice', state_was: state_was, state: state.to_s.capitalize) }
@@ -134,10 +125,9 @@ class ProjectsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to project_path(@project), notice: t('advanced_project_alert', state_was: state_was, event: event.to_s.capitalize) }
+        format.html { redirect_to project_path(@project), alert: t('advanced_project_alert', state_was: state_was, event: event.to_s.capitalize) }
         format.json { render json: { error: t('advanced_project_alert', state_was: state_was, event: event.to_s ) } }
       end
-
     end
   end
 
