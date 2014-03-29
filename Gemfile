@@ -80,6 +80,8 @@ gem 'unicorn'
 gem 'capistrano', '< 3.0.0', group: :development
 
 # Development and test
+gem "codeclimate-test-reporter", group: :test, require: nil
+
 group :test, :development do
   gem 'debugger', '>= 1.6.5'
 

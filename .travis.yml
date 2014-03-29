@@ -8,6 +8,10 @@ branches:
 rvm:
   - 2.1.0
 
+addons:
+  code_climate:
+    repo_token: 7c5a50698477f965eab96d43f59a8803ec53162e303baac54a975699af722f7d
+
 services:
   - postgresql
   - elasticsearch
