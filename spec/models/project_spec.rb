@@ -51,9 +51,9 @@ describe Project do
     let(:role) { project.roles.create(name: 'Developer', quantity: 1) }
 
     it "progresses through states" do
-      expect(project.pending?).to be_true
+      expect(project.pending?).to be_truthy
 
-      expect(project.may_staff?).to be_true
+      expect(project.may_staff?).to be_truthy
 
       expect {
         project.staff
@@ -74,7 +74,7 @@ describe Project do
         project.may_succeed?
       }.from(false).to(true)
 
-      expect(project.may_fail?).to be_true
+      expect(project.may_fail?).to be_truthy
 
       # Once we have a success (or fail) state we cannot abandon. It's done!
       expect {
@@ -85,11 +85,11 @@ describe Project do
     end
 
     it "guards against scheduling unstaffed projects" do
-      expect(role.id).to be_true
+      expect(role.id).to be_truthy
 
       project.staff
 
-      expect(project.may_schedule?).to be_false
+      expect(project.may_schedule?).to be_falsey
 
       expect {
         project.memberships.create!(
@@ -146,7 +146,8 @@ describe Project do
           project.tag_list = [ skill, "something else" ]
           project.save!
         }.to change {
-          Project.tagged_with(skill, any: true).count
+          # FIXME: Ew -> https://github.com/mbleigh/acts-as-taggable-on/issues/530
+          Project.tagged_with(skill, any: true).count(:all).size
         }.from(0).to(1)
 
         clean_es!
