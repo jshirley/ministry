@@ -231,7 +231,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
-  config.omniauth :github, Figaro.env.github_client_id, Figaro.env.github_secret, scope: "user,gist"
+  config.omniauth :github, ENV['GITHUB_CLIENT_id'], ENV['GITHUB_SECRET'], scope: "user,gist"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
