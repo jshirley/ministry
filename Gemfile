@@ -39,7 +39,7 @@ gem 'figaro', '~> 0.7.0'
 
 # View stuff
 gem 'slim', '~> 2.0.2'
-gem 'simple_form'
+gem 'simple_form', '~> 3.1.0rc1'
 gem 'country_select'
 gem "combined_time_select", "~> 1.0.0"
 
