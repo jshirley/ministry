@@ -4,7 +4,7 @@ h1 = @membership.role.name
   - if @membership.needs_acceptance?
     = simple_form_for @membership do |f|
       = f.input :note
-      = f.input :accepted, wrapper: :inline_checkbox, label: t('accept_role_label_html')
+      = f.input :accepted, boolean_style: :inline, label: t('accept_role_label_html')
       div.form-actions
         = f.submit t('accept_role_invitation_button_html'), class: 'btn btn-primary'
 
