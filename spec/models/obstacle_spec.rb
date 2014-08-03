@@ -8,13 +8,13 @@ describe Obstacle do
   context "validation" do
     it "requires user" do
       obstacle = project.obstacles.build(flag: 0)
-      expect(obstacle.valid?).to be_false
+      expect(obstacle.valid?).to be_falsey
       expect(obstacle.errors[:user]).to eq(["can't be blank"])
     end
 
     it "requires project" do
       obstacle = Obstacle.new(user: owner, flag: 0)
-      expect(obstacle.valid?).to be_false
+      expect(obstacle.valid?).to be_falsey
       expect(obstacle.errors[:project].size).to eq(1)
     end
   end
