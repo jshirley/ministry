@@ -4,7 +4,7 @@ source 'https://rails-assets.org'
 ruby '2.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0rc1'
+gem 'rails', '4.1.4'
 
 # Use pg as the database for Active Record
 gem 'pg'
@@ -35,18 +35,18 @@ gem 'ranked-model'
 gem 'acts-as-taggable-on'
 
 # See https://github.com/laserlemon/figaro/issues/86
-gem 'figaro', github: 'laserlemon/figaro', branch: 'master'
+gem 'figaro', '~> 0.7.0'
 
 # View stuff
-gem 'slim'
+gem 'slim', '~> 2.0.2'
 gem 'simple_form'
 gem 'country_select'
 gem "combined_time_select", "~> 1.0.0"
 
-gem 'sass-rails', '~> 4.0.0'
-gem 'less-rails'
+gem 'sass-rails', '~> 4.0.3'
+
 # From https://rails-assets.org, bower-based components
-gem 'rails-assets-bootstrap'
+gem 'bootstrap-sass', '~> 3.2.0'
 gem 'rails-assets-bootstrap-tagsinput'
 #gem 'rails-assets-typeahead.js' This is completely busted up, just copied it into vendor
 

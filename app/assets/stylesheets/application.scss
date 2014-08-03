@@ -10,10 +10,11 @@
  *
  *= require_self
  *= require_tree .
- *= require bootstrap
  *= require bootstrap-tagsinput
  *= require typeahead
  */
+
+@import "bootstrap";
 
 .primary {
   margin-top: 60px;
